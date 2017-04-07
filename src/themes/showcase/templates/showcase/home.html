@@ -1,0 +1,66 @@
+﻿<article class="post" ng-hide="isEdit">
+    <div class="post__header">
+        <div class="post__holder" style="background-image: url('')">
+            <div class="post__content col col--half col--center center">
+                <h1 class="post__title spc--bottom--lrg spc--inside--tb--med">Baasic BMW K-BUS With RaspberryPI Showcase</h1>
+                <div class="post__hero-holder spc--bottom--med">
+                    <div class="post__hero-holder--cell">
+                        <hr class="post__line">
+                    </div>
+                    <div class="post__hero-holder--cell">
+                        <hr class="post__line">
+                    </div>
+                </div>
+            </div>
+            <div class="overlay__hero"></div>
+        </div>
+    </div>
+    <div class="col col--third col--center post__wrapper spc--inside--tb--med offset--top--lrg">
+        <div class="post__infobox">
+            <div class="pull--on-med">
+                <small class="icon--calendar post__icon"></small> <small>{{ blog.startdate | date:'EEEE, MMMM d, y' }}</small>
+            </div>
+            <div class="push--on-med">
+                <small class="icon--time post__icon"></small> <small>From {{ blog.starttime | date:'hh : mm a' }}</small>
+                <small>till {{ blog.endtime | date:'hh : mm a' }}</small>
+            </div>
+        </div>
+        <div class="post__infobox">
+            <div class="pull--on-med">
+                <small class="icon--home post__icon"></small> <small>{{ blog.location }}</small>
+            </div>
+            <div class="push--on-med">
+                <small class="icon--payment post__icon"></small> <small>Ticket Price: € {{ blog.price }}</small>
+            </div>
+        </div>
+        <div class="post__infobox">
+            <div ng-repeat="performer in blog.performers">
+                <div class="post__item">
+                    <h2 class="post__item__title">{{ performer.name }}</h2>
+                    <small>{{ performer.desc }}</small>
+                </div>
+            </div>
+        </div>
+        <div class="post__infobox">
+            <baasic-metering-request-chart filter="requestFilter" chart-config="requestChartConfig"></baasic-metering-request-chart>
+        </div>
+        <div class="post__infobox">
+            <div ng-repeat="tag in blog.tags" class="tags__item">
+                <a class="tags__link" ui-sref="master.main.blog-search({ tags: tag.slug })">{{ tag.tag }}</a>
+            </div>
+        </div>
+        <div class="post__infobox">
+            <baasic-profile author-id="authorId"></baasic-profile>
+        </div>
+    </div>
+</article>
+<div class="col col--third col--center post__wrapper spc--inside--tb--med">
+    <span ng-hide="isEdit">
+        <span ng-if="$root.user.isAuthenticated">
+            <button class="btn btn--primary btn--med" type="button" ng-click="editBlog()">Edit</button>
+            <button class="btn btn--secondary btn--med" type="button" ng-click="deleteBlog()">Delete</button>
+        </span>
+    </span>
+
+
+</div>
