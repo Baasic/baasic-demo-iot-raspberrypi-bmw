@@ -1,5 +1,5 @@
 ﻿angular.module('baasic.blog')
-    .directive("baasicMeteringDriveChart", [
+    .directive("baasicMeteringAmbientChart", [
         function () {
             return {
                 restrict: 'E',
@@ -18,12 +18,12 @@
 
                         $scope.config = {
                             title: {
-                                text: 'Driving Data',
+                                text: 'Ambient Data',
                                 useHTML: true
                             },
 
                             chart: {
-                                type: 'area',
+                                type: 'line',
                                 backgroundColor: null,
                                 alignTicks: false,
                                 plotBackgroundColor: null,
@@ -200,7 +200,7 @@
                                         if ($scope.chart) {
                                             $scope.chart.destroy();
                                         }
-                                        $scope.chart = Highcharts.chart('containerDrive', $scope.config);
+                                        $scope.chart = Highcharts.chart('containerAmbient', $scope.config);
                                     });
                                 })
                                 .error(function (data, status, headers, config) {
@@ -214,7 +214,7 @@
                     }
                 ],
                 templateUrl: function (elem, attrs) {
-                    return '/templates/showcase/metering-drive-chart/metering-drive-chart.directive.html';
+                    return '/templates/showcase/metering-ambient-chart/metering-ambient-chart.directive.html';
                 }
             }
         }

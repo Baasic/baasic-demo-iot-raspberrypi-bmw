@@ -20,7 +20,7 @@
                 return {
                     pageNumber: 1,
                     pageSize: 1440,
-                    fields: 'categoryId,dateCreated,name,value',
+                    fields: 'categoryId,dateCreated,name,moduleName,value',
                     category: 'Drive',
                     orderBy: 'dateCreated',
                     orderDirection: 'asc',
@@ -33,7 +33,7 @@
                 return {
                     pageNumber: 1,
                     pageSize: 1440,
-                    fields: 'categoryId,dateCreated,name,value',
+                    fields: 'categoryId,dateCreated,name,moduleName,value',
                     orderBy: 'dateCreated',
                     orderDirection: 'asc',
                     rateBy: 'minute',

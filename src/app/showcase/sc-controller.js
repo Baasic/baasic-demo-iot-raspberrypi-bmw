@@ -3,7 +3,8 @@
         function ($scope, $state, meteringUtilityService) {
             'use strict';
 
-            $scope.requestFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {});
+            $scope.driveFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {});
+            $scope.ambientFilter = angular.extend(meteringUtilityService.getAmbientDefaultFilter(), {});
 
             //$scope.$root.loader.suspend();
 
