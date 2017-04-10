@@ -13,6 +13,7 @@ angular.module('myBlog', [
         'baasic.dynamicResource',
         'baasic.blog',
         'baasic.userProfile',
+        'baasic.metering',
         'ui.gravatar'
     ])
     .config(['$locationProvider', '$urlRouterProvider', '$stateProvider', 'baasicAppProvider', 'baasicAppConfigProvider',

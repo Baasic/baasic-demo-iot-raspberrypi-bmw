@@ -1,7 +1,9 @@
 ﻿angular.module('baasic.blog')
-    .controller('SCCtrl', ['$scope', '$state', 'baasicSCService',
-        function ($scope, $state, blogService) {
+    .controller('SCCtrl', ['$scope', '$state', 'meteringUtilityService',
+        function ($scope, $state, meteringUtilityService) {
             'use strict';
+
+            $scope.requestFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {});
 
             //$scope.$root.loader.suspend();
 

@@ -1,5 +1,5 @@
 ﻿angular.module('baasic.blog')
-    .directive("baasicMeteringRequestChart", [
+    .directive("baasicMeteringDriveChart", [
         function () {
             return {
                 restrict: 'E',
@@ -12,49 +12,29 @@
                     applicationIdentifier: '=',
                     viewMoreRedirectState: '@'
                 },
-                link: function ($scope, element, attrs) {
-                    $scope.viewMoreRedirectState = '';
-                    if (attrs.viewMoreRedirectState) {
-                        $scope.viewMoreRedirectState = attrs.viewMoreRedirectState;
-                    }
-                },
-                controller: ["$scope", "$state", "currentView", "meteringService", "notificationService", 'meteringUtilityService', 'baasicAuthorizationService', 'dashBoardApp',
-                    function ($scope, $state, currentView, meteringService, notificationService, meteringUtilityService, authService, dashBoardApp) {
-                        //Colors
-                        var colors = dashBoardApp.metering.colors;
+                link: function ($scope, element, attrs) {},
+                controller: ["$scope", "$state", "meteringService", 'meteringUtilityService', 'baasicAuthorizationService',
+                    function ($scope, $state, meteringService, meteringUtilityService, authService) {
 
-                        var moduleView = currentView.get('meteringRequestChartDirective');
-                        $scope.view = moduleView;
-                        moduleView.suspend();
-
-                        $scope.$watch('filter', function () {
-                            if (!$scope.view.isSuspended) {
-                                $scope.reload();
-                            }
-                        }, true);
-
-                        function seriesClick(info) {
-                            var result = $scope.seriesClick({
-                                info: info
-                            });
-                            if (!result) {
-                                $state.go('index.metering.general-request-view', {
-                                    category: 'Request',
-                                    month: info.category
-                                });
-                            }
-                        };
-
-                        $scope.requestChartConfig = _.deepExtend({
+                        $scope.config = {
                             title: {
-                                text: 'Requests',
+                                text: 'Drive',
                                 useHTML: true
                             },
                             options: {
                                 chart: {
                                     type: 'column',
-                                    height: 250,
                                     backgroundColor: null,
+                                    alignTicks: false,
+                                    plotBackgroundColor: null,
+                                    plotBackgroundImage: null,
+                                    plotBorderWidth: 0,
+                                    plotShadow: false,
+                                    spacingTop: 0,
+                                    spacingLeft: 0,
+                                    spacingRight: 0,
+                                    spacingBottom: 0,
+                                    height: 250,
                                     style: {
                                         fontFamily: '"Roboto", Arial, Helvetica, sans-serif',
                                     },
@@ -88,13 +68,35 @@
                             series: [],
                             yAxis: {
                                 title: {
-                                    text: 'Requests'
+                                    text: 'Km/h'
                                 }
                             },
                             xAxis: {
                                 categories: []
-                            }
-                        }, $scope.chartConfig || {});
+                            },
+                            size: {
+                                height: 250
+                            },
+                            func: function (chart) {
+                                var chartInstance = chart;
+                                $scope.chartInstance = chart;
+                                $timeout(function () {
+                                    try {
+                                        if (chartInstance && chartInstance.reflow) {
+                                            chartInstance.reflow();
+                                        }
+                                    } catch (e) {
+                                        console.log(e);
+                                    }
+                                }, 1000);
+                            },
+                            series: []
+                        };
+
+
+
+                        //Colors
+                        var colors = ['#00C2E8', '#531a93', '#0a80a8', '#70db36', '#ed5e61', '#30a7ba', '#d2f449', '#74ce21', '#add34c', '#d62652', '#f733bf', '#e1fc67', '#cc5b57', '#7043a8', '#27dd73', '#316991', '#17c41a', '#db420a', '#1b4989', '#38c193', '#addb43', '#5971d1', '#1409e8', '#d545e8', '#a8471e', '#38bef7', '#aace1a', '#db2e36', '#ed7e68', '#d8457b', '#dd52d2', '#1538a3', '#dd1ca0', '#e9ed1e', '#8b41e0', '#a51329', '#3ff4bb', '#f49613', '#d1a349', '#d6ed0e', '#3be2c9', '#14ce0a', '#623bef', '#12d112', '#bc0124', '#1ba6f7', '#bc4c40', '#7ea00c', '#2be2d0', '#60db97', '#d36a4a', '#5482f7', '#1b9314', '#e05302', '#f25975', '#44e5c8', '#d17c4f', '#dba34e', '#11c3db', '#cc6341', '#c48f00', '#d15772', '#3ef96d', '#925ce8', '#05724c', '#1e388c', '#30479b', '#af1d5a', '#0d5770', '#f2e165', '#aed328', '#3c318e', '#295b87', '#c5d356', '#d14274', '#2e7fba', '#5753ba', '#26d3c2', '#6a7707', '#62ff2d', '#9edd5f', '#f9002d', '#2a3ce0', '#20aa73', '#39dbba', '#f966cb', '#af3d0f', '#d1307d', '#cbd12b', '#c7f959', '#7a42ce', '#d6724a', '#35fcc3', '#4ad6b5', '#28e084', '#d81ec3', '#05b210', '#4fcad1', '#33e8db', '#7df745'];
 
                         function compileCategory(item) {
                             return meteringUtilityService.compileCategory($scope.filter.rateBy, item);
@@ -110,7 +112,7 @@
 
                             return {
                                 series: [{
-                                    name: 'Requests',
+                                    name: 'Drive',
                                     data: values
                                 }],
                                 categories: categories
@@ -128,24 +130,17 @@
 
 
                         $scope.reload = function () {
-                            var user = authService.getUser();
-                            if (!user) {
-                                $scope.hasResults = false;
-                                return;
-                            }
-                            moduleView.suspend();
                             meteringService.statistics.find($scope.filter)
                                 .success(function (metrics) {
-                                    $scope.hasResults = metrics && metrics.item && metrics.item.length > 0;
                                     var seriesCounter = 0;
-                                    $scope.requestChartConfig.xAxis.categories.splice(0, $scope.requestChartConfig.xAxis.categories.length)
-                                    $scope.requestChartConfig.series.splice(0, $scope.requestChartConfig.series.length)
+                                    $scope.config.xAxis.categories.splice(0, $scope.config.xAxis.categories.length)
+                                    $scope.config.series.splice(0, $scope.config.series.length)
 
                                     var result = executeTransformData({
                                         metrics: metrics.item
                                     });
                                     _.each(result.categories, function (item) {
-                                        $scope.requestChartConfig.xAxis.categories.push(item);
+                                        $scope.config.xAxis.categories.push(item);
                                     });
                                     _.each(result.series, function (item) {
                                         if (item.data && item.data.length > 0 && angular.isObject(item.data[0])) {
@@ -163,29 +158,25 @@
                                             item.color = colors[seriesCounter];
                                             seriesCounter++;
                                         }
-                                        $scope.requestChartConfig.series.push(item);
+                                        $scope.config.series.push(item);
+                                        if ($scope.chart) {
+                                            $scope.chart.destroy();
+                                        }
+                                        $scope.chart = Highcharts.chart('container', $scope.config);
                                     });
                                 })
                                 .error(function (data, status, headers, config) {
-                                    var notification = notificationService.create("Unable to load account metering data.");
-                                    notificationService.formatErrorNotification(notification, data, status, headers, config);
-                                    notificationService.update(notification);
+                                    console.log("Unable to load account metering data.");
                                 })
                                 .finally(function () {
-                                    moduleView.resume();
+
                                 });
                         };
                         $scope.reload();
                     }
                 ],
                 templateUrl: function (elem, attrs) {
-                    var url = '/templates/showcase/metering-request-chart/';
-                    if (!attrs.templateUrl) {
-                        url = url + 'metering-request-chart.directive.html';
-                    } else {
-                        url = url + attrs.templateUrl + '.html';
-                    }
-                    return url;
+                    return '/templates/showcase/metering-drive-chart/metering-drive-chart.directive.html';
                 }
             }
         }
