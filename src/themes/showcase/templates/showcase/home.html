@@ -27,7 +27,11 @@
         </div>
         <div class="post__infobox">
             <div>
-                <a href="javascript:void(0);" ng-click="updateLowBeamState(!syncData.data.state.lightLowBeam)">Low Beam {{syncData.data.state.lightLowBeam}}</a>
+                Low Beam: {{syncData.data.state.lightLowBeam ? 'Green' : 'Red'}}
+                <input type="checkbox" ng-click="updateLowBeamState(!syncData.data.state.lightLowBeam)">
+            </div>
+            <div>
+                <a href="javascript:void(0);">Low Beam {{syncData.data.state.lightLowBeam}}</a>
                 <a href="javascript:void(0);" ng-click="updateHighBeamState(!syncData.data.state.lightHighBeam)">High Beam {{syncData.data.state.lightHighBeam}}</a>
                 <a href="javascript:void(0);" ng-click="updateTurnSignalState(!syncData.data.state.lightTurnSignal)">Turn Signal {{syncData.data.state.lightTurnSignal}}</a>
             </div>

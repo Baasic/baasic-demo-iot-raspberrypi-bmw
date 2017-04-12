@@ -60,19 +60,7 @@
                                 categories: [],
                                 tickPixelInterval: 150
                             },
-                            func: function (chart) {
-                                var chartInstance = chart;
-                                $scope.chartInstance = chart;
-                                $timeout(function () {
-                                    try {
-                                        if (chartInstance && chartInstance.reflow) {
-                                            chartInstance.reflow();
-                                        }
-                                    } catch (e) {
-                                        console.log(e);
-                                    }
-                                }, 1000);
-                            },
+
                             size: {
                                 height: 250
                             }
@@ -168,7 +156,7 @@
                                         console.log(e);
                                     }
                                 });
-                        }, 1000);
+                        }, 60000);
 
                         $scope.$on("$destroy", function () {
                             if ($scope.sync) {
@@ -214,13 +202,15 @@
                                         if ($scope.chart) {
                                             var result = executeTransformData(metrics.item);
                                             _.each(result.categories, function (item) {
-                                                $scope.chart.xAxis[0].categories.push(item);
+                                                if (_.indexOf($scope.chart.xAxis[0].categories, item) === -1) {
+                                                    $scope.chart.xAxis[0].categories.push(item);
+                                                }
                                             });
 
                                             _.each($scope.chart.series, function (item) {
                                                 _.each(metrics.item, function (mItem) {
                                                     if (mItem.name === item.name) {
-                                                        item.addPoint([meteringUtilityService.compileCategory($scope.filter.rateBy, mItem), mItem.value], true, true);
+                                                        item.addPoint([meteringUtilityService.compileCategory($scope.filter.rateBy, mItem), mItem.value], true, false);
                                                     }
                                                 });
                                             });

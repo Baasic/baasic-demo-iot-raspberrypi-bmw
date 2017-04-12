@@ -26,6 +26,8 @@
                 save(data);
             };
 
+
+
             function save(data) {
                 baasicDynamicResourceService.update('Commands', data)
                     .success(function (data) {
