@@ -1,6 +1,7 @@
-﻿angular.module('baasic.blog').service("meteringService", ["$rootScope", "$interval", "$q", "baasicApiHttp", "baasicApiService", "baasicUriTemplateService", "baasicMeteringService",
-    function ($rootScope, $interval, $q, baasicApiHttp, baasicApiService, uriTemplateService, baasicMeteringService) {
-        return {
+﻿angular.module('baasic.blog').service("meteringService", ["$rootScope", "$interval", "$q", "baasicApiHttp", "baasicApiService", "baasicUriTemplateService", "baasicMeteringService", "baasicDynamicResourceService",
+    function ($rootScope, $interval, $q, baasicApiHttp, baasicApiService, uriTemplateService, baasicMeteringService, baasicDynamicResourceService) {
+        this.result = {
+            syncData: {},
             find: function (option) {
                 return baasicMeteringService.find(option);
             },
@@ -51,5 +52,46 @@
                 }
             }
         };
+
+        var self = this;
+
+        function sync() {
+            baasicDynamicResourceService.get('Commands', '7ilgDcx7j4MLxQTH0FTfn2')
+                .success(function (data) {
+                    if (data && data.state) {
+                        self.result.syncData.data = data;
+                        var rawData = [];
+                        rawData.push({
+                            "name": "LowBeam",
+                            "moduleName": "Light",
+                            "status": 200,
+                            "value": data.state.lightLowBeam ? 10 : 0,
+                            "category": "commands"
+                        });
+                        rawData.push({
+                            "name": "HighBeam",
+                            "moduleName": "Light",
+                            "status": 200,
+                            "value": data.state.lightHighBeam ? 20 : 0,
+                            "category": "commands"
+                        });
+                        rawData.push({
+                            "name": "TurnSignal",
+                            "moduleName": "Light",
+                            "status": 200,
+                            "value": data.state.lightTurnSignal ? 30 : 0,
+                            "category": "commands"
+                        });
+                        self.result.batch.create(rawData)
+                            .error(function (error) {
+                                console.log(error);
+                            });
+                    }
+                });
+        }
+        sync();
+        var backgroundTask = $interval(sync, 10000);
+
+        return this.result;
     }
 ]);

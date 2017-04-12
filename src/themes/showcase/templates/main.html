@@ -20,22 +20,14 @@
 
     <nav ng-class="{'nShow': menuOpen}" class="header--main" role="navigation">
         <a class="btn btn--icon icon--home spc--right--lrg" href="/"></a>
-        <button ng-click="searchOpen=!searchOpen" title="Search" class="btn btn--icon icon--search spc--right--lrg" type="button">Search</button>
-        <button ng-click="tagOpen=!tagOpen" title="Tag Cloud" class="btn btn--icon icon--tagcloud spc--right--lrg">Tag Cloud</button>
         <div class="inline header--membership" ng-if="$root.user.isAuthenticated">
-            <button class="btn btn--icon icon--write spc--right--lrg" title="New Post" type="button" ng-click="newBlogPost()">New post</button>
             <baasic-logout on-logout="setEmptyUser()" class="spc--right--lrg">
                 <button class="btn btn--icon icon--logout" title="Log Out" type="button" ng-click="logout()">Logout</button>
             </baasic-logout>
-
         </div>
         <div class="inline-block spc--right--lrg" ng-if="!$root.user.isAuthenticated">
             <button type="button" title="Log In" class="btn btn--icon icon--login" ui-sref="login">login</button>
         </div>
-        <div class="inline-block" ng-if="!$root.user.isAuthenticated">
-            <button type="button" title="Registration" class="btn btn--icon icon--register" ui-sref="register">register</button>
-        </div>
-
     </nav>
 </header>
 

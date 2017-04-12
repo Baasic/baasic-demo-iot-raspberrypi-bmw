@@ -1,4 +1,4 @@
-﻿<article class="post" ng-hide="isEdit">
+﻿<article class="post">
     <div class="post__header">
         <div class="post__holder" style="background-image: url('')">
             <div class="post__content col col--half col--center center">
@@ -17,20 +17,19 @@
     </div>
     <div class="col col--third col--center post__wrapper spc--inside--tb--med offset--top--lrg">
         <div class="post__infobox">
-            <div ng-repeat="performer in blog.performers">
-                <div class="post__item">
-                    <h2 class="post__item__title">{{ performer.name }}</h2>
-                    <small>{{ performer.desc }}</small>
-                </div>
-            </div>
+            <baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
         </div>
         <div class="post__infobox">
-            <baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
             <baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
         </div>
         <div class="post__infobox">
-            <div ng-repeat="tag in blog.tags" class="tags__item">
-                <a class="tags__link" ui-sref="master.main.blog-search({ tags: tag.slug })">{{ tag.tag }}</a>
+            <baasic-metering-commands-chart filter="commandsFilter"></baasic-metering-commands-chart>
+        </div>
+        <div class="post__infobox">
+            <div>
+                <a href="javascript:void();" ng-click="updateLowBeamState(!syncData.data.state.lightLowBeam)">Low Beam {{syncData.data.state.lightLowBeam}}</a>
+                <a href="javascript:void();" ng-click="updateHighBeamState(!syncData.data.state.lightHighBeam)">High Beam {{syncData.data.state.lightHighBeam}}</a>
+                <a href="javascript:void();" ng-click="updateTurnSignalState(!syncData.data.state.lightTurnSignal)">Turn Signal {{syncData.data.state.lightTurnSignal}}</a>
             </div>
         </div>
         <div class="post__infobox">
@@ -38,13 +37,3 @@
         </div>
     </div>
 </article>
-<div class="col col--third col--center post__wrapper spc--inside--tb--med">
-    <span ng-hide="isEdit">
-        <span ng-if="$root.user.isAuthenticated">
-            <button class="btn btn--primary btn--med" type="button" ng-click="editBlog()">Edit</button>
-            <button class="btn btn--secondary btn--med" type="button" ng-click="deleteBlog()">Delete</button>
-        </span>
-    </span>
-
-
-</div>
