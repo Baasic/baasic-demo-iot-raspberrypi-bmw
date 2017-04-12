@@ -50,7 +50,7 @@
                     orderBy: 'dateCreated',
                     orderDirection: 'asc',
                     rateBy: 'minute',
-                    from: 'minute ago',
+                    from: '1 minute ago',
                     to: 'now',
                     category: 'Commands'
                 };

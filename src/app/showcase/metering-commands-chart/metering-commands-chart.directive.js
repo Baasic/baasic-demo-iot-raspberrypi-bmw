@@ -21,33 +21,44 @@
                                 text: 'Commands Data'
                             },
                             chart: {
-                                type: 'area',
+                                type: 'line',
+                                backgroundColor: null,
+                                plotBackgroundColor: null,
+                                plotBackgroundImage: null,
+                                plotBorderWidth: 0,
+                                plotShadow: false,
+                                spacingTop: 0,
+                                spacingLeft: 0,
+                                spacingRight: 0,
+                                spacingBottom: 0,
+                                height: 250,
+                                animation: Highcharts.svg, // don't animate in old IE
+                                marginRight: 10,
                                 style: {
                                     fontFamily: '"Roboto", Arial, Helvetica, sans-serif',
                                 },
                             },
                             plotOptions: {
-                                area: {
-                                    marker: {
-                                        enabled: false,
-                                        symbol: 'circle',
-                                        radius: 2,
-                                        states: {
-                                            hover: {
-                                                enabled: true
-                                            }
-                                        }
-                                    }
+                                series: {
+                                    minPointLength: 5,
+                                    cursor: 'pointer',
+                                    point: {}
                                 }
                             },
                             series: [],
                             yAxis: {
                                 title: {
                                     text: 'Data'
-                                }
+                                },
+                                plotLines: [{
+                                    value: 0,
+                                    width: 1,
+                                    color: '#808080'
+                                }]
                             },
                             xAxis: {
-                                categories: []
+                                categories: [],
+                                tickPixelInterval: 150
                             },
                             func: function (chart) {
                                 var chartInstance = chart;
@@ -62,6 +73,9 @@
                                     }
                                 }, 1000);
                             },
+                            size: {
+                                height: 250
+                            }
                         };
 
 
@@ -106,9 +120,6 @@
                                     if (metric) {
                                         seriesMetaData[name].name = metric.name;
                                         var value = metric.value;
-                                        if (metric.name === 'RPM') {
-                                            value = (value / 10).toPrecision(5) * 1;
-                                        }
                                         seriesMetaData[name].data.push(value);
                                     } else {
                                         seriesMetaData[name].data.push(0);
@@ -161,41 +172,59 @@
 
                         $scope.$on("$destroy", function () {
                             if ($scope.sync) {
-                                $scope.sync();
+                                $interval.cancel($scope.sync);
                             }
                         });
 
                         $scope.reload = function () {
                             return meteringService.statistics.find($scope.filter)
                                 .success(function (metrics) {
-                                    var seriesCounter = 0;
-                                    $scope.config.xAxis.categories.splice(0, $scope.config.xAxis.categories.length)
-                                    $scope.config.series.splice(0, $scope.config.series.length)
+                                    if (!$scope.chart) {
+                                        //Init
+                                        var seriesCounter = 0;
+                                        $scope.config.xAxis.categories.splice(0, $scope.config.xAxis.categories.length)
+                                        $scope.config.series.splice(0, $scope.config.series.length)
 
-                                    var result = executeTransformData(metrics.item);
-                                    _.each(result.categories, function (item) {
-                                        $scope.config.xAxis.categories.push(item);
-                                    });
-                                    _.each(result.series, function (item) {
-                                        if (item.data && item.data.length > 0 && angular.isObject(item.data[0])) {
-                                            _.each(item.data, function (data) {
+                                        var result = executeTransformData(metrics.item);
+                                        _.each(result.categories, function (item) {
+                                            $scope.config.xAxis.categories.push(item);
+                                        });
+                                        _.each(result.series, function (item) {
+                                            if (item.data && item.data.length > 0 && angular.isObject(item.data[0])) {
+                                                _.each(item.data, function (data) {
+                                                    if (seriesCounter > colors.length) {
+                                                        seriesCounter = 0;
+                                                    }
+                                                    data.color = colors[seriesCounter];
+                                                    seriesCounter++;
+                                                });
+                                            } else {
                                                 if (seriesCounter > colors.length) {
                                                     seriesCounter = 0;
                                                 }
-                                                data.color = colors[seriesCounter];
+                                                item.color = colors[seriesCounter];
                                                 seriesCounter++;
-                                            });
-                                        } else {
-                                            if (seriesCounter > colors.length) {
-                                                seriesCounter = 0;
                                             }
-                                            item.color = colors[seriesCounter];
-                                            seriesCounter++;
-                                        }
-                                        $scope.config.series.push(item);
-                                    });
-                                    if (!$scope.chart) {
+                                            $scope.config.series.push(item);
+                                        });
+
                                         $scope.createChart();
+                                    } else {
+                                        //Add point
+                                        if ($scope.chart) {
+                                            var result = executeTransformData(metrics.item);
+                                            _.each(result.categories, function (item) {
+                                                $scope.chart.xAxis[0].categories.push(item);
+                                            });
+
+                                            _.each($scope.chart.series, function (item) {
+                                                _.each(metrics.item, function (mItem) {
+                                                    if (mItem.name === item.name) {
+                                                        item.addPoint([meteringUtilityService.compileCategory($scope.filter.rateBy, mItem), mItem.value], true, true);
+                                                    }
+                                                });
+                                            });
+                                        }
                                     }
                                 })
                                 .error(function (data, status, headers, config) {
