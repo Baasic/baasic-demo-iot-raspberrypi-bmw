@@ -23,17 +23,25 @@
             <baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
         </div>
         <div class="post__infobox">
-            <baasic-metering-commands-chart filter="commandsFilter"></baasic-metering-commands-chart>
-        </div>
-        <div class="post__infobox">
             <div>
-                Low Beam: {{syncData.data.state.lightLowBeam ? 'Green' : 'Red'}}
-                <input type="checkbox" ng-click="updateLowBeamState(!syncData.data.state.lightLowBeam)">
+                Low Beam: {{syncData.data.state.lightLowBeam ? 'On' : 'Off'}}
+                <input type="checkbox" ng-model="syncData.data.state.lightLowBeam" ng-click="updateState(lowBeamAutoOff)">
+                <span ng-show="syncData.data.state.lightLowBeam">Auto turn-off in: {{lowBeamAutoOff.counter}} sec.</span>
             </div>
             <div>
-                <a href="javascript:void(0);">Low Beam {{syncData.data.state.lightLowBeam}}</a>
-                <a href="javascript:void(0);" ng-click="updateHighBeamState(!syncData.data.state.lightHighBeam)">High Beam {{syncData.data.state.lightHighBeam}}</a>
-                <a href="javascript:void(0);" ng-click="updateTurnSignalState(!syncData.data.state.lightTurnSignal)">Turn Signal {{syncData.data.state.lightTurnSignal}}</a>
+                High Beam: {{syncData.data.state.lightHighBeam ? 'On' : 'Off'}}
+                <input type="checkbox" ng-model="syncData.data.state.lightHighBeam" ng-click="updateState(highBeamAutoOff)">
+                <span ng-show="syncData.data.state.lightHighBeam">Auto turn-off in: {{highBeamAutoOff.counter}} sec.</span>
+            </div>
+            <div>
+                Turn Signal: {{syncData.data.state.lightTurnSignal ? 'On' : 'Off'}}
+                <input type="checkbox" ng-model="syncData.data.state.lightTurnSignal" ng-click="updateState(turnSignalAutoOff)">
+                <span ng-show="syncData.data.state.lightTurnSignal">Auto turn-off in: {{turnSignalAutoOff.counter}} sec.</span>
+            </div>
+            <div>
+                Locks: {{syncData.data.state.locks ? 'On' : 'Off'}}
+                <input type="checkbox" ng-model="syncData.data.state.locks" ng-click="updateState(locksAutoOff)">
+                <span ng-show="syncData.data.state.locks">Auto turn-off in: {{locksAutoOff.counter}} sec.</span>
             </div>
         </div>
         <div class="post__infobox">

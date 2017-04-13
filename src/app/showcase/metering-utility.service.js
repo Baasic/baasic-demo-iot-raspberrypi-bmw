@@ -41,19 +41,6 @@
                     to: 'now',
                     category: 'Ambient'
                 };
-            },
-            getCommandsDefaultFilter: function () {
-                return {
-                    pageNumber: 1,
-                    pageSize: 1440,
-                    fields: 'categoryId,dateCreated,name,moduleName,value',
-                    orderBy: 'dateCreated',
-                    orderDirection: 'asc',
-                    rateBy: 'minute',
-                    from: '1 minute ago',
-                    to: 'now',
-                    category: 'Commands'
-                };
             }
         };
     }
