@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    # vars.colors
+\*------------------------------------*/
+
+/**
+ * Generic colors
+ * Color naming taken from: http://www.color-blindness.com/color-name-hue/
+ */
+
+/**
+ * Brand colors
+ */
+$lucky-point:       #2a3254;
+$radical-red:       #f42f67;
+
+/**
+ * Global text color
+ */
+$color-text:        #575756;
+
+/**
+ * Theme colors
+ */
+$color-primary:     $radical-red;
+$color-secondary: 	$lucky-point;
+
+/**
+ * Utility colors
+ */
+$color-warning:     #f44336;
+$color-success:     #4caf50;
+$color-note:        #ffeb3b;

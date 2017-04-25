@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    # tools.typomatic
+\*------------------------------------*/
+
+/**
+ * Mixin name: typomatic-init
+ * Description: creates a vertical rhythm on a page using font-size
+ * and line-height on the html element
+ * Parameters: 
+ * does not take parameters
+ */
+@define-mixin typomatic-init {
+    font-size: calc($base-font-size / 16 * 100%);
+    line-height: calc($base-line-height / $base-font-size);
+}
+
+/**
+ * Mixin name: type-scale
+ * Description: type-scale sets the type to baseline to achieve
+ * vertical rhythm.
+ * Parameters: 
+ * $scale ($base-font-size is default) - font size (unitless) variable
+ * $baselines (1 is default) - number of baselines
+ */
+@define-mixin type-scale $scale: $base-font-size, $baselines: 1 {
+    font-size: calc($(scale) * 1px);
+    line-height: calc($base-line-height * $(baselines) * 1px);
+}

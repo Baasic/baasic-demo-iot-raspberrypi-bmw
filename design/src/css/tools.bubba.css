@@ -1,0 +1,83 @@
+/*------------------------------------*\
+    # tools.bubba
+\*------------------------------------*/
+
+/**
+ * Custom 12 column grid with 2% gutters (6.5% width column).
+ * $grid-gutter - amount of space between columns
+ * $grid-columns - number of columns of the grid
+ */
+
+$grid-gutter: 20px;
+$grid-columns: 12;
+
+/**
+ * The grid-row mixin is used for building rows
+ */
+@define-mixin grid-row {
+    margin-left: calc(-$grid-gutter / 2);
+    margin-right: calc(-$grid-gutter / 2);
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+/**
+ * The grid-span mixin is used for building grid columns
+ */
+@define-mixin grid-span $span: 1, $context: $grid-columns {
+    width: calc($(span) / $(context) * 100%);
+    float: left;
+}
+
+/**
+ * The grid-col mixin is used for gutters
+ */
+@define-mixin grid-col {
+    padding-left: calc($grid-gutter / 2);
+    padding-right: calc($grid-gutter / 2);
+}
+
+/**
+ * The grid-push mixin is used for pushing columns using margin-left
+ * for the space of a number of columns
+ */
+@define-mixin grid-push $push: 1, $context: $grid-columns {
+    margin-left: calc($(push) / $(context) * 100%);
+}
+
+/**
+ * The grid-pull mixin is used for pulling columns using margin-left
+ * for the space of a number of columns
+ */
+@define-mixin grid-pull $pull: 1, $context: $grid-columns {
+    margin-right: calc($(pull) / $(context) * 100%);
+}
+
+/**
+ * Grid
+ */
+.grid {
+}
+.grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/**
+ * Row
+ */
+.row {
+    @mixin grid-row;
+}
+
+/**
+ * Column
+ */
+.col {
+    padding-left: calc($grid-gutter / 2);
+    padding-right: calc($grid-gutter / 2);
+}

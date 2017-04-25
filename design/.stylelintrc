@@ -1,0 +1,15 @@
+{
+    "rules": {
+        "block-no-empty": null,
+        "color-no-invalid-hex": true,
+        "declaration-colon-space-after": "always",
+        "number-leading-zero": "always",
+        "max-empty-lines": 1,
+        "unit-whitelist": ["px", "%", "ms"],
+        "unit-case": "lower",
+        "declaration-block-no-duplicate-properties": true,
+        "declaration-block-no-shorthand-property-overrides": true,
+        "function-linear-gradient-no-nonstandard-direction": true,
+        "color-hex-case": ["lower", { "severity": "warning" }]
+    }
+}

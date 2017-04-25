@@ -1,0 +1,37 @@
+/*------------------------------------*\
+    # vars.typography
+\*------------------------------------*/
+
+/**
+ * Project base line height (unitless in order to work with typomatic)
+ */
+$base-line-height: 24;
+$base-font-size:   16;
+
+/**
+ * Type scale sizes must be entered in their pixel size
+ * (unitless in order to work with typomatic)
+ * Default type scale ratio: 1.333;
+ */
+$type-tiny:     12;
+$type-small:    14;
+$type-base:     $base-font-size;
+$type-medium:   19;
+$type-large:    23;
+$type-xlarge:   28;
+$type-xxlarge:  33;
+$type-xxxlarge: 40;
+
+/**
+ * Type weights
+ */
+ $type-weight-thin:     100;
+ $type-weight-light:    300;
+ $type-weight-regular:  400;
+ $type-weight-bold:     700;
+
+/**
+ * Font stacks
+ */
+ $ff-sans: 'Roboto', Helvetica, Arial, sans-serif;
+ $ff-serif: Georgia, Times, serif;

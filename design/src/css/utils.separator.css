@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    # components.separator
+\*------------------------------------*/
+
+.separator {
+
+    &--primary {
+        border-bottom: 1px solid color($color-text lightness(+55%));
+    }
+}

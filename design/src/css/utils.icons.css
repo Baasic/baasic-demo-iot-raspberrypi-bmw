@@ -1,0 +1,104 @@
+/*------------------------------------*\
+    # util.icon
+\*------------------------------------*/
+
+.icon {
+    display: inline-block;
+	opacity: 0.3;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+    	transform: translateY(-2px);
+		opacity: 1;
+    }
+
+	&--med {
+	    width: calc($unit * 7);
+	    height: calc($unit * 8);
+	    background-size: calc($unit * 6);
+	}
+
+	&--lights {
+
+		&--low {
+        	background-image: svg-load(../images/account.svg);
+	    
+	        &--on {
+		        background-image: svg-load(../images/account.svg, fill: blue);
+	        }
+
+		}
+
+		&--high {
+        	background-image: svg-load(../images/account.svg);
+
+        	&--on {
+		        background-image: svg-load(../images/account.svg, fill: blue);
+	        }
+		}
+	}
+
+	&--blinker {
+
+		&--left {
+        	background-image: svg-load(../images/account.svg);
+	    
+	        &--on {
+		        background-image: svg-load(../images/account.svg, fill: blue);
+	        }
+
+		}
+
+		&--right {
+        	background-image: svg-load(../images/account.svg);
+
+        	&--on {
+		        background-image: svg-load(../images/account.svg, fill: blue);
+	        }
+		}
+	}
+
+	&--lock {
+		background-image: svg-load(../images/account.svg);
+
+        &--on {
+        	background-image: svg-load(../images/account.svg, fill: blue);
+        }
+	}
+
+	&--window {
+		background-image: svg-load(../images/account.svg);
+
+        &--opened {
+        	background-image: svg-load(../images/account.svg, fill: blue);
+        }
+	}
+
+	&--door {
+		background-image: svg-load(../images/account.svg);
+
+        &--opened {
+        	background-image: svg-load(../images/account.svg, fill: blue);
+		}
+	}
+
+	&--hood {
+		background-image: svg-load(../images/account.svg);
+
+        &--opened {
+        	background-image: svg-load(../images/account.svg, fill: blue);
+		}
+	}
+
+	&--trunk {
+		background-image: svg-load(../images/account.svg);
+
+        &--opened {
+        	background-image: svg-load(../images/account.svg, fill: blue);
+		}
+	}
+}

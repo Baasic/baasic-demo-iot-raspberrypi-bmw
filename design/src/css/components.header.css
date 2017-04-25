@@ -1,0 +1,9 @@
+/*------------------------------------*\
+    # components.header
+\*------------------------------------*/
+
+/* Example of postcss-inline-svg */
+
+background: svg-load(../images/layers.svg, fill=blue, stroke=red);
+height: 150px;
+background-size: 50% 50%;

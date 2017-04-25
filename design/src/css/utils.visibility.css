@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    # utils.visibility
+\*------------------------------------*/
+
+.hide {
+    display: none;
+}
+.hide-visibility {
+    visibility: hidden;
+}

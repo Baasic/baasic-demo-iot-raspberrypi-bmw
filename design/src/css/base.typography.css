@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    # base.typography
+\*------------------------------------*/
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+h1 {
+    @mixin type-scale $type-xxlarge, 1.75;
+}
+h2 {
+    @mixin type-scale $type-xlarge, 1.5;
+}
+h3 {
+    @mixin type-scale $type-large, 1.25;
+}
+h4, h5, h6 {
+    @mixin type-scale $type-medium, 1;
+}
+
+/**
+ * Paragraphs
+ */
+p {
+    margin: 0;
+}
+
+/**
+ * Lists (ol, ul, dd)
+ */
+ol, ul, dl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ol {}
+ol li {}
+ul {}
+ul li {}
+dd {}
+dl dt {}
+dl dd {}
+
+/**
+ * Anchors
+ */
+a {
+    color: $color-primary;
+    text-decoration: none;
+}
+a:link {}
+a:hover {
+    color: $color-secondary;
+}
+a:focus {
+    outline: 0;
+    color: $color-secondary;
+}
+a:visited {}
+
+/**
+ * Typographic details
+ */
+hr {}
+em {}
+b, strong {
+    font-weight: bold
+}
+address {}
+small {}
+pre {}
+code {}
+sub {}
+sup {}
+strike {}

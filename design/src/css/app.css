@@ -1,0 +1,104 @@
+/**
+* Title: SharePoint
+* Author/s: Mono
+* CSS build platform: Gulp
+* CSS development build command: gulp styles
+* CSS production build command: gulp styles
+* CSS processor: PostCSS
+* CSS processor usage: autoprefixing, nesting, variables, minification, pxtorem, color functions
+* CSS name convention: BEM
+* Global indentation: 4 spaces
+* Global units: px
+* Global prefix: none
+* Browser support: IE9+, last 3 versions of modern browsers, Android 4+, iOS6+
+* Additional notes: Some properties with pixel units (depending on the whitelist in Gulpfile) are being recalculated to REM units
+*/
+
+/**
+* Import: vars
+* Description: variables
+*/
+@import "vars.globals.css";
+@import "vars.typography.css";
+@import "vars.responsive.css";
+@import "vars.colors.css";
+@import "vars.shadows.css";
+
+/**
+* Import: tools
+* Description: tools like typomatic and other mixins / libraries
+*/
+@import "tools.typomatic.css";
+@import "tools.bubba.css";
+@import "tools.clearing.css";
+
+/**
+* Import: generic
+* Description: normalize or reset CSS, box sizing
+*/
+@import "../../node_modules/normalize.css/normalize.css";
+@import "generic.boxsizing.css";
+
+/**
+* Import: base
+* Description: base structural stylings for setting the body, typography
+* and other base styles (no classes should be added here)
+*/
+@import "base.globals.css";
+@import "base.typography.css";
+
+/**
+* Import: modules
+* Description: cross project reusable modules
+*/
+@import "modules.btn.css";
+@import "modules.container.css";
+@import "modules.field.css";
+@import "modules.input.css";
+/* @import modules.anchor.css; */
+
+/**
+* Import: components
+* Description: specific website/app components
+*/
+@import "components.header.css";
+/* @import components.footer.css; */
+
+/**
+* Import: views
+* Description: specific website/app views (example: 404 view, login view)
+*/
+/* @import views.login.css; */
+/* @import views.404.css; */
+
+/**
+* Import: utils
+* Description: reusable utilities such as floats, spacers etc.
+*/
+@import "utils.grid.css";
+@import "utils.spacers.css";
+@import "utils.width.css";
+@import "utils.type.css";
+@import "utils.floats.css";
+@import "utils.separator.css";
+@import "utils.icons.css";
+/* @import utils.floats.css; */
+/* @import utils.visibility.css; */
+
+/**
+* Import: plugins
+* Description: 3rd party code, external plugin CSS etc
+* Note: when importing code from a 3rd party it should be stripped off
+* any vendor prefixes since autoprefixer will use project specific vendor prefixes
+*/
+@import "plugins.fontface.css";
+/* @import plugins.select2.css; */
+/* @import plugins.remodal.css; */
+
+/**
+* Import: shame
+* Description: CSS shame file
+* Note: to be avoided, exists only if REALLY necessary or legacy code
+*/
+
+/* @import shame.css; */

@@ -1,0 +1,18 @@
+/*------------------------------------*\
+    # vars.responsive
+\*------------------------------------*/
+
+@custom-media --screen-from-sml    (min-width: 34em); /* 544px */
+@custom-media --screen-to-sml      (max-width: 33.9375em); /* 543px */
+
+@custom-media --screen-from-med   (min-width: 48em); /* 768px */
+@custom-media --screen-to-med     (max-width: 47.9375em); /* 767px */
+
+@custom-media --screen-from-lrg    (min-width: 62em); /* 992px */
+@custom-media --screen-to-lrg      (max-width: 61.9375em); /* 991px */
+
+@custom-media --screen-from-xlrg   (min-width: 75em); /* 1200px */
+@custom-media --screen-to-xlrg     (max-width: 74.9375em); /* 1199px */
+
+@custom-media --screen-from-xxlrg  (min-width: 90em); /* 1440px */
+@custom-media --screen-to-xxlrg    (max-width: 89.9375em); /* 1439px */
