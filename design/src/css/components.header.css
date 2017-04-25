@@ -4,6 +4,12 @@
 
 /* Example of postcss-inline-svg */
 
-background: svg-load(../images/layers.svg, fill=blue, stroke=red);
-height: 150px;
-background-size: 50% 50%;
+.header {
+	background-color: $color-primary;
+	padding: $spacer;
+
+	&__identity {
+    	border-bottom: 1px solid color(white a(0.4));
+    	padding-bottom: $spacer;
+	}
+}

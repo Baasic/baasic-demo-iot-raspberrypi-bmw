@@ -10,6 +10,7 @@
     background-position: center center;
 
     transition: all 250ms ease-in-out;
+    vertical-align: middle;
 
     &:hover {
     	transform: translateY(-2px);
@@ -17,27 +18,40 @@
     }
 
 	&--med {
-	    width: calc($unit * 7);
-	    height: calc($unit * 8);
+	    width: calc($unit * 10);
+	    height: calc($unit * 10);
 	    background-size: calc($unit * 6);
+	}
+
+	&--filled {
+		border: 1px solid $color-primary;
+		padding: calc($unit * 3);
+
+		&--active {
+			background-color: $color-primary;
+		}
+	}
+
+	&--rounded {
+		border-radius: $global-rounded;
 	}
 
 	&--lights {
 
 		&--low {
-        	background-image: svg-load(../images/account.svg);
+        	background-image: svg-load(../images/low-lights.svg, fill: $color-secondary);
 	    
 	        &--on {
-		        background-image: svg-load(../images/account.svg, fill: blue);
+		        background-image: svg-load(../images/low-lights.svg, fill: white);
 	        }
 
 		}
 
 		&--high {
-        	background-image: svg-load(../images/account.svg);
+        	background-image: svg-load(../images/high-lights.svg, fill: $color-secondary);
 
         	&--on {
-		        background-image: svg-load(../images/account.svg, fill: blue);
+		        background-image: svg-load(../images/high-lights.svg, fill: blue);
 	        }
 		}
 	}
@@ -45,60 +59,61 @@
 	&--blinker {
 
 		&--left {
-        	background-image: svg-load(../images/account.svg);
+        	background-image: svg-load(../images/blinker-left.svg, stroke: $color-secondary, fill: transparent);
 	    
 	        &--on {
-		        background-image: svg-load(../images/account.svg, fill: blue);
+		        background-image: svg-load(../images/blinker-left.svg, stroke: white, fill: transparent);
 	        }
 
 		}
 
 		&--right {
-        	background-image: svg-load(../images/account.svg);
+        	background-image: svg-load(../images/blinker-right.svg, stroke: $color-secondary, fill: transparent);
 
         	&--on {
-		        background-image: svg-load(../images/account.svg, fill: blue);
+		        background-image: svg-load(../images/blinker-right.svg, stroke: white, fill: transparent);
 	        }
 		}
 	}
 
 	&--lock {
-		background-image: svg-load(../images/account.svg);
+		background-image: svg-load(../images/lock.svg, stroke: $color-secondary, fill: transparent);
 
         &--on {
-        	background-image: svg-load(../images/account.svg, fill: blue);
+        	background-image: svg-load(../images/lock.svg, stroke: white, fill: transparent);
         }
 	}
 
 	&--window {
-		background-image: svg-load(../images/account.svg);
+		background-image: svg-load(../images/window-left.svg, stroke: $color-secondary, fill: transparent);
 
         &--opened {
-        	background-image: svg-load(../images/account.svg, fill: blue);
+        	background-image: svg-load(../images/window-left.svg, stroke: white, fill: transparent);
         }
 	}
 
-	&--door {
-		background-image: svg-load(../images/account.svg);
+	&--doors {
+		background-image: svg-load(../images/doors.svg, stroke: $color-secondary, fill: transparent);
 
         &--opened {
-        	background-image: svg-load(../images/account.svg, fill: blue);
+        	background-image: svg-load(../images/doors.svg, stroke: white, fill: transparent);
 		}
 	}
 
 	&--hood {
-		background-image: svg-load(../images/account.svg);
+		background-image: svg-load(../images/hood.svg, stroke: $color-secondary, fill: transparent);
 
         &--opened {
-        	background-image: svg-load(../images/account.svg, fill: blue);
+        	background-image: svg-load(../images/hood.svg, stroke: white, fill: transparent);
 		}
 	}
 
 	&--trunk {
-		background-image: svg-load(../images/account.svg);
+		background-image: svg-load(../images/trunk.svg, stroke: $color-secondary, fill: transparent);
 
         &--opened {
-        	background-image: svg-load(../images/account.svg, fill: blue);
+        	background-image: svg-load(../images/trunk.svg, stroke: white, fill: transparent);
+
 		}
 	}
 }

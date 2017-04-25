@@ -1,5 +1,5 @@
 /**
-* Title: SharePoint
+* Title: Baasic IoT BMW
 * Author/s: Mono
 * CSS build platform: Gulp
 * CSS development build command: gulp styles
@@ -55,6 +55,8 @@
 @import "modules.container.css";
 @import "modules.field.css";
 @import "modules.input.css";
+@import "modules.title.css";
+@import "modules.section.css";
 /* @import modules.anchor.css; */
 
 /**
@@ -62,6 +64,7 @@
 * Description: specific website/app components
 */
 @import "components.header.css";
+@import "components.car.css";
 /* @import components.footer.css; */
 
 /**

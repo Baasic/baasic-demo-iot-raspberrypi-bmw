@@ -10,8 +10,8 @@
 /**
  * Brand colors
  */
-$lucky-point:       #2a3254;
-$radical-red:       #f42f67;
+$deep-sky-blue:		#00c2e8;
+$red-orange:		#ff2c3b;
 
 /**
  * Global text color
@@ -21,8 +21,8 @@ $color-text:        #575756;
 /**
  * Theme colors
  */
-$color-primary:     $radical-red;
-$color-secondary: 	$lucky-point;
+$color-primary:     $deep-sky-blue;
+$color-secondary: 	$red-orange;
 
 /**
  * Utility colors
