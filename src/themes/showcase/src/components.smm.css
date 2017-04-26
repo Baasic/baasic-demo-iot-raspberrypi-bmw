@@ -9,6 +9,7 @@
     display: inline-block;
     padding: .75rem .75rem .75rem 0;
     opacity: 0.5;
+    transition: all 250ms ease-in-out;
 }
 .smm__link:focus {
     outline: 0;
@@ -54,7 +55,6 @@
     -webkit-transform: translate(0px,1px);
     transform: translate(0px,1px);
     opacity: 1;
-
 }
 .smm__icon--login:focus {
     outline: 0;

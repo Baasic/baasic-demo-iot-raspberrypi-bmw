@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    # tools.clearing
+\*------------------------------------*/
+
+@define-mixin clearfix {
+    &:after {
+          content: "";
+          display: table;
+          clear: both;
+    }
+}
+.clear {
+    @mixin clearfix;
+}
+.group {
+    overflow: hidden;
+}

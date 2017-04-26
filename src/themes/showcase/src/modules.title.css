@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    # modules.title
+\*------------------------------------*/
+
+ .title {
+ 	&--primary {
+	 	&:after {
+	 		content: "";
+	 		display: block;
+	 		width: calc($unit * 4);
+	 		height: 1px;
+
+	 		margin-top: calc($unit * 4);
+	 		background-color: white;
+	 	}
+
+	 	&--alt {
+	 		margin-top: calc($unit * 8);
+		 	&:after {
+		 		content: "";
+		 		display: block;
+		 		width: calc($unit * 4);
+		 		height: 1px;
+
+		 		margin-top: calc($unit * 4);
+		 		background-color: $color-text;
+		 	}	
+	 	}
+ 	}
+
+ 	&--secondary {
+ 		margin-bottom: calc($unit * 2);
+ 		padding-right: calc($unit * 4);
+
+ 		&:after {
+ 			content: "";
+ 			display: block;
+ 			width: calc($unit * 2);
+ 			height: 1px;
+
+ 			margin: calc($unit * 2) auto;
+ 			background-color: $color-text;
+ 		}
+ 	}
+ }

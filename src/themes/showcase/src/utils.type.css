@@ -1,0 +1,89 @@
+/*------------------------------------*\
+    # utils.type
+\*------------------------------------*/
+
+.type {
+    &--sans {
+        font-family: $ff-sans;
+    }
+    &--serif {
+        font-family: $ff-serif;
+    }
+    &--tiny {
+        @mixin type-scale $type-tiny, 0.75;
+    }
+    &--small {
+        @mixin type-scale $type-small, 1;
+    }
+    &--base {
+        @mixin type-scale $type-base, 1;
+    }
+    &--medium {
+        @mixin type-scale $type-base, 1;
+        @media (--screen-from-med) {
+            @mixin type-scale $type-medium, 1.25;
+        }
+    }
+    &--large {
+        @mixin type-scale $type-medium, 1.25;
+        @media (--screen-from-med) {
+            @mixin type-scale $type-large, 1.5;
+        }
+    }
+    &--xlarge {
+        @mixin type-scale $type-large, 1.5;
+        @media (--screen-from-med) {
+            @mixin type-scale $type-xlarge, 2;
+        }
+    }
+    &--huge {
+        font-size: calc($unit * 10);
+        line-height: calc($unit * 12);
+        @media (--screen-from-med) {
+            font-size: calc($unit * 18);
+            line-height: calc($unit * 20);
+        }
+    }
+    &--thin {
+        font-weight: $type-weight-thin;
+    }
+    &--light {
+        font-weight: $type-weight-light;
+    }
+    &--regular {
+        font-weight: $type-weight-regular;
+    }
+    &--bold {
+        font-weight: $type-weight-bold;
+    }
+    &--negative {
+        color: white;
+    }
+    &--opaque {
+        color: color(white a(0.75));
+    }
+    &--uppercase {
+        text-transform: uppercase;
+    }
+    &--letterspace {
+        &--narrow {
+        }
+        &--wide {
+            letter-spacing: 1.75px;
+        }
+    }
+    &--color {
+        &--light {
+            color: color($color-text lightness(+20%));
+        }
+    }
+    &--center {
+        text-align: center;
+    }
+    &--left {
+        text-align: left;
+    }
+    &--right {
+        text-align: right;
+    }
+}

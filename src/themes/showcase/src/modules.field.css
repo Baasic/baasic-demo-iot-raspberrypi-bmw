@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    # modules.field
+\*------------------------------------*/
+
+.field {
+    margin-bottom: calc($unit * 2);
+    &__label {
+        @mixin type-scale $type-small, 1;
+        display: block;
+        padding-top: $unit;
+        margin-bottom: calc($unit * 2);
+         @media (--screen-from-med) {
+            margin-bottom: 0;
+        }
+        &--checked {
+            color: $color-secondary;
+        }
+    }
+}

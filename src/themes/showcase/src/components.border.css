@@ -1,8 +1,0 @@
-/*------------------------------------*\
-    # components.border
-\*------------------------------------*/
-
-.border--lr {
-    border-left: 1px dotted white;
-    border-right: 1px dotted white;
-}

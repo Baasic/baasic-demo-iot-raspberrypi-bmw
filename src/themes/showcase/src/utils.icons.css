@@ -1,0 +1,108 @@
+/*------------------------------------*\
+    # util.icon
+\*------------------------------------*/
+
+.icon {
+    display: inline-block;
+	opacity: 0.3;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    transition: all 250ms ease-in-out;
+    vertical-align: middle;
+
+    &:hover {
+    	transform: translateY(-2px);
+		opacity: 1;
+    }
+
+	&--med {
+	    width: calc($unit * 10);
+	    height: calc($unit * 10);
+	    background-size: calc($unit * 6);
+	}
+
+	&--filled {
+		background-color: white;
+		padding: calc($unit * 3);
+
+		&--active {
+			background-color: white;
+			opacity: 1;
+		}
+	}
+
+	&--border {
+		border: 1px solid $color-primary;
+		padding: calc($unit * 3);
+
+		&--active {
+			background-color: $color-primary;
+			opacity: 1;
+		}
+	}
+
+	&--rounded {
+		border-radius: $global-rounded;
+	}
+
+	&--lights {
+
+		&--low {
+        	background-image: svg-load(../assets/img/low-lights.svg, fill: $color-secondary);
+		}
+
+		&--high {
+        	background-image: svg-load(../assets/img/high-lights.svg, fill: $color-secondary);
+		}
+	}
+
+	&--blinker {
+
+		&--left {
+        	background-image: svg-load(../assets/img/blinker-left.svg, stroke: $color-secondary, fill: transparent);
+		}
+
+		&--right {
+        	background-image: svg-load(../assets/img/blinker-right.svg, stroke: $color-secondary, fill: transparent);
+		}
+	}
+
+	&--lock {
+		background-image: svg-load(../assets/img/lock.svg, stroke: $color-secondary, fill: transparent);
+	}
+
+	&--window {
+		background-image: svg-load(../assets/img/window-left.svg, stroke: $color-secondary, fill: transparent);
+
+        &--opened {
+        	background-image: svg-load(../assets/img/window-left.svg, stroke: white, fill: transparent);
+        }
+	}
+
+	&--doors {
+		background-image: svg-load(../assets/img/doors.svg, stroke: $color-secondary, fill: transparent);
+
+        &--opened {
+        	background-image: svg-load(../assets/img/doors.svg, stroke: white, fill: transparent);
+		}
+	}
+
+	&--hood {
+		background-image: svg-load(../assets/img/hood.svg, stroke: $color-secondary, fill: transparent);
+
+        &--opened {
+        	background-image: svg-load(../assets/img/hood.svg, stroke: white, fill: transparent);
+		}
+	}
+
+	&--trunk {
+		background-image: svg-load(../assets/img/trunk.svg, stroke: $color-secondary, fill: transparent);
+
+        &--opened {
+        	background-image: svg-load(../assets/img/trunk.svg, stroke: white, fill: transparent);
+
+		}
+	}
+}

@@ -8,7 +8,7 @@
     font-size: var(--type-tiny);
     color: var(--color-light);
 }
-@media all and (--from-large) {
+@media all and (--screen-from-lrg) {
     .footer {
         width: 100%;
         margin: 2rem 0;

@@ -16,6 +16,10 @@ var gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     bower = require('./bower'),
     minifyCss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    plumber = require('gulp-plumber'),
+    connect = require('gulp-connect'),
+    open = require('gulp-open'),
     isWatching = false;
 
 var htmlminOpts = {
@@ -36,6 +40,13 @@ var customMedia = require('postcss-custom-media');
 var calc = require('postcss-calc');
 var colorFunction = require('postcss-color-function');
 var autoprefixer = require('autoprefixer');
+var mixins = require('postcss-mixins');
+var simplevars = require('postcss-simple-vars');
+var nested = require('postcss-nested');
+var postcssInlineSvg = require('postcss-inline-svg');
+var postcssSvgo = require('postcss-svgo');
+var cssNano = require('cssnano');
+var gulpStylelint = require('gulp-stylelint');
 
 //Processor
 gulp.task('styles', function () {
@@ -43,44 +54,97 @@ gulp.task('styles', function () {
         atImport({
             from: './src/themes/' + theme + '/src/app.css'
         }),
-        customMedia,
-        customProperties,
-        calc,
+        // Add mixin PostCSS support
+        mixins,
+        // Add variables PostCSS support
+        simplevars,
+        // Add nesting PostCSS support
+        nested,
+        // Add CSS color functions PostCSS support
         colorFunction,
-        autoprefixer({
-            browsers: ['last 2 versions']
+        // Reference an SVG file and control its attributes with CSS
+        postcssInlineSvg,
+        // Optimise inline SVG with PostCSS
+        postcssSvgo,
+        // Add calc PostCSS support
+        calc,
+        // Add custom media queries PostCSS support
+        customMedia,
+        // Add W3C CSS color function to more compatible CSS PostCSS support
+        colorFunction,
+        // Add vendor prefixing PostCSS support
+        autoprefixer ({
+          browsers: ['last 2 version']
         })
     ];
 
     return gulp.src(
             './src/themes/' + theme + '/src/app.css')
+
+        // Prevent pipe breaking caused by errors from gulp plugins
+        .pipe(plumber({
+            errorHandler: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
         .pipe(postcss(processors))
         .pipe(gulp.dest('./.tmp/'))
+        .pipe(gulp.dest('./.tmp/'))
         .pipe(g.cached('built-css'))
-        .pipe(livereload());
+        .pipe(connect.reload());
 });
 
 gulp.task('styles-dist', function () {
     var processors = [
         atImport({
             from: './src/themes/' + theme + '/src/app.css'
+
         }),
-        customMedia,
-        customProperties,
-        calc,
+        // Add mixin PostCSS support
+        mixins,
+        // Add variables PostCSS support
+        simplevars,
+        // Add nesting PostCSS support
+        nested,
+        // Add CSS color functions PostCSS support
         colorFunction,
-        autoprefixer({
-            browsers: ['last 2 versions']
-        }),
+        // Reference an SVG file and control its attributes with CSS
+        postcssInlineSvg,
+        // Optimise inline SVG with PostCSS
+        postcssSvgo,
+        // Add calc PostCSS support
+        calc,
+        // Add custom media queries PostCSS support
+        customMedia,
+        // Add W3C CSS color function to more compatible CSS PostCSS support
+        colorFunction,
+        // Add vendor prefixing PostCSS support
+        autoprefixer ({
+          browsers: ['last 2 version']
+        })
     ];
     return gulp.src([
             './src/themes/' + theme + '/src/app.css'
-        ])
-        .pipe(postcss(processors))
-        .pipe(minifyCss({
-            processImport: false
+    ])
+        // Prevent pipe breaking caused by errors from gulp plugins
+        .pipe(plumber({
+            errorHandler: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
         }))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(postcss(processors))
+        // Processed folder file destination
+        .pipe(gulp.dest('./dist/'))
+        // Minify the CSS
+        .pipe(postcss([
+            cssNano
+        ]))
+        // Rename
+        .pipe(rename('app.min.css'))
+        .pipe(gulp.dest('./dist/'))
+        .pipe(connect.reload());
 });
 
 
@@ -168,9 +232,14 @@ function index() {
 /**
  * Assets
  */
-gulp.task('assets', ['favicon'], function () {
+
+gulp.task('assets-tmp', function () {
     return gulp.src(['./src/assets/**', './src/themes/' + theme + '/assets/**'])
-        .pipe(gulp.dest('./dist/assets'));
+        .pipe(gulp.dest('./.tmp/assets/'));
+});
+gulp.task('assets',['favicon'], function () {
+    return gulp.src(['./src/assets/**', './src/themes/' + theme + '/assets/**'])
+        .pipe(gulp.dest('./dist/assets/'));
 });
 gulp.task('favicon', function () {
     return gulp.src(['./src/themes/' + theme + '/favicon.ico'])
@@ -217,7 +286,7 @@ gulp.task('dist', ['clean-dist', 'vendors', 'assets', 'styles-dist', 'scripts-di
 /**
  * Watch
  */
-gulp.task('serve', ['watch'], g.serve({
+gulp.task('serve', ['assets-tmp','watch'], g.serve({
     port: 3000,
     root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components', './src', './src/themes/' + theme],
     middleware: function (req, res, next) {
