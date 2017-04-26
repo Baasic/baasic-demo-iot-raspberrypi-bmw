@@ -29,6 +29,7 @@
 
 		&--active {
 			background-color: white;
+			opacity: 1;
 		}
 	}
 
@@ -38,6 +39,7 @@
 
 		&--active {
 			background-color: $color-primary;
+			opacity: 1;
 		}
 	}
 
@@ -49,19 +51,10 @@
 
 		&--low {
         	background-image: svg-load(../images/low-lights.svg, fill: $color-secondary);
-	    
-	        &--on {
-		        background-image: svg-load(../images/low-lights.svg, fill: white);
-	        }
-
 		}
 
 		&--high {
         	background-image: svg-load(../images/high-lights.svg, fill: $color-secondary);
-
-        	&--on {
-		        background-image: svg-load(../images/high-lights.svg, fill: blue);
-	        }
 		}
 	}
 
@@ -69,28 +62,15 @@
 
 		&--left {
         	background-image: svg-load(../images/blinker-left.svg, stroke: $color-secondary, fill: transparent);
-	    
-	        &--on {
-		        background-image: svg-load(../images/blinker-left.svg, stroke: white, fill: transparent);
-	        }
-
 		}
 
 		&--right {
         	background-image: svg-load(../images/blinker-right.svg, stroke: $color-secondary, fill: transparent);
-
-        	&--on {
-		        background-image: svg-load(../images/blinker-right.svg, stroke: white, fill: transparent);
-	        }
 		}
 	}
 
 	&--lock {
 		background-image: svg-load(../images/lock.svg, stroke: $color-secondary, fill: transparent);
-
-        &--on {
-        	background-image: svg-load(../images/lock.svg, stroke: white, fill: transparent);
-        }
 	}
 
 	&--window {
