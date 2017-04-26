@@ -10,14 +10,26 @@
 	 		width: calc($unit * 4);
 	 		height: 1px;
 
-	 		margin: calc($unit * 4) auto;
-	 		background-color: $color-text;
+	 		margin-top: calc($unit * 4);
+	 		background-color: white;
+	 	}
+
+	 	&--alt {
+	 		margin-top: calc($unit * 8);
+		 	&:after {
+		 		content: "";
+		 		display: block;
+		 		width: calc($unit * 4);
+		 		height: 1px;
+
+		 		margin-top: calc($unit * 4);
+		 		background-color: $color-text;
+		 	}	
 	 	}
  	}
 
  	&--secondary {
  		margin-bottom: calc($unit * 2);
- 		padding-left: calc($unit * 4);
  		padding-right: calc($unit * 4);
 
  		&:after {

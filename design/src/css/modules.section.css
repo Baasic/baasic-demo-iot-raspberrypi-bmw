@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
  .section {
- 	padding-top: 96px;
-    padding-bottom: 96px;
+ 	padding-top: $spacer;
+    padding-bottom: $spacer;
     
  	&--primary {
  		background-color: white;

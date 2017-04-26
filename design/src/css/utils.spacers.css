@@ -31,4 +31,9 @@
             margin-bottom: calc($unit * 8);
         }
     }
+    &--pull {
+        &--sml {
+            margin-left: calc($unit * 2);
+        }
+    }
 }

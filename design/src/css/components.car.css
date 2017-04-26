@@ -2,6 +2,79 @@
     # components.car
 \*------------------------------------*/
 
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+    opacity: 0;
+	transition: all 500ms ease-in;
+  }
+}
+
+
 .car {
 	padding: $spacer;
+
+	&__lock {
+		opacity: 0;
+		visibility: hidden;
+		
+		transform: translateY(-3px);			
+		transition: all 500ms ease-in;
+
+		&--off {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(2px);
+			animation: blink-animation 900ms steps(24, start) infinite;
+
+		}
+
+		&--lines {
+			stroke: yellow;
+		}
+	}
+
+	&__blinker {
+
+		&--left {
+			transition: all 500ms ease-in;
+
+			&--on {
+				animation: blink-animation 1000ms steps(24, start) infinite;
+				fill: #fcde00;
+				stroke: transparent;
+			}
+		}
+
+		&--right {
+			transition: all 500ms ease-in;
+
+			&--on {
+				animation: blink-animation 1000ms steps(10, start) infinite;
+				fill: #fcde00;
+				stroke: transparent;
+			}
+		}
+	}
+
+	&__lights {
+
+		&--high {
+			transition: all 500ms ease-in;
+
+			&--on {
+				fill: color(white a(0.9));
+			}
+		}
+		&--low {
+			transition: all 500ms ease-in;
+
+			&--on {
+				fill: color(white a(0.6));
+			}
+		}
+	}
 }
+
+

@@ -912,12 +912,22 @@ strike {}
     display: block;
     width: 24px;
     height: 1px;
-    margin: 24px auto;
+    margin-top: 24px;
+    background-color: white;
+}
+.title--primary--alt {
+    margin-top: 48px;
+}
+.title--primary--alt:after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 1px;
+    margin-top: 24px;
     background-color: #575756;
 }
 .title--secondary {
     margin-bottom: 12px;
-    padding-left: 24px;
     padding-right: 24px;
 }
 .title--secondary:after {
@@ -932,8 +942,8 @@ strike {}
     # modules.container
 \*------------------------------------*/
 .section {
- 	padding-top: 96px;
-    padding-bottom: 96px;
+ 	padding-top: 24px;
+    padding-bottom: 24px;
  }
 .section--primary {
     background-color: white;
@@ -963,8 +973,58 @@ strike {}
 /*------------------------------------*\
     # components.car
 \*------------------------------------*/
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+    opacity: 0;
+	transition: all 500ms ease-in;
+  }
+}
 .car {
 	padding: 24px;
+}
+.car__lock {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-3px);
+    transition: all 500ms ease-in;
+}
+.car__lock--off {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(2px);
+    animation: blink-animation 900ms steps(24, start) infinite;
+}
+.car__lock--lines {
+    stroke: yellow;
+}
+.car__blinker--left {
+    transition: all 500ms ease-in;
+}
+.car__blinker--left--on {
+    animation: blink-animation 1000ms steps(24, start) infinite;
+    fill: #fcde00;
+    stroke: transparent;
+}
+.car__blinker--right {
+    transition: all 500ms ease-in;
+}
+.car__blinker--right--on {
+    animation: blink-animation 1000ms steps(10, start) infinite;
+    fill: #fcde00;
+    stroke: transparent;
+}
+.car__lights--high {
+    transition: all 500ms ease-in;
+}
+.car__lights--high--on {
+    fill: rgba(255, 255, 255, 0.9);
+}
+.car__lights--low {
+    transition: all 500ms ease-in;
+}
+.car__lights--low--on {
+    fill: rgba(255, 255, 255, 0.6);
 }
 /* @import components.footer.css; */
 /**
@@ -1270,6 +1330,9 @@ strike {}
 .spc--bottom--xlrg {
     margin-bottom: 48px;
 }
+.spc--pull--sml {
+    margin-left: 12px;
+}
 /*------------------------------------*\
     # utils.width
 \*------------------------------------*/
@@ -1456,10 +1519,17 @@ strike {}
     background-size: 36px;
 }
 .icon--filled {
-    border: 1px solid #00c2e8;
+    background-color: white;
     padding: 18px;
 }
 .icon--filled--active {
+    background-color: white;
+}
+.icon--border {
+    border: 1px solid #00c2e8;
+    padding: 18px;
+}
+.icon--border--active {
     background-color: #00c2e8;
 }
 .icon--rounded {
