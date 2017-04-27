@@ -211,6 +211,10 @@
                                 });
                         };
                         $scope.reload();
+
+                        $scope.$watch('filter', function () {
+                            $scope.reload();
+                        });
                     }
                 ],
                 templateUrl: function (elem, attrs) {

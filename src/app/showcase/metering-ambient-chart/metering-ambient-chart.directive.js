@@ -169,7 +169,7 @@
 
 
 
-                        $scope.reload = function () {
+                        $scope.reloadAmbient = function () {
                             meteringService.statistics.find($scope.filter)
                                 .success(function (metrics) {
                                     var seriesCounter = 0;
@@ -210,7 +210,11 @@
 
                                 });
                         };
-                        $scope.reload();
+                        $scope.reloadAmbient();
+
+                        $scope.$watch('filter', function () {
+                            $scope.reloadAmbient();
+                        });
                     }
                 ],
                 templateUrl: function (elem, attrs) {

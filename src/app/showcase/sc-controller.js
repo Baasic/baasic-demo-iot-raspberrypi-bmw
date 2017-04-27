@@ -6,6 +6,9 @@
                 data: {}
             };
 
+            $scope.driveRange = 1;
+            $scope.ambientRange = 1;
+
             $scope.lowBeamAutoOff = {
                 on: false,
                 counter: 60
@@ -62,8 +65,27 @@
                     console.log(error);
                 });
 
-            $scope.driveFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {});
-            $scope.ambientFilter = angular.extend(meteringUtilityService.getAmbientDefaultFilter(), {});
+            $scope.driveFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {
+                from: $scope.driveRange == 10 ? '10 days ago' : ($scope.driveRange == 5) ? '5 days ago' : 'today',
+                rateBy: $scope.driveRange > 1 ? 'hour' : 'minute'
+            });
+            $scope.ambientFilter = angular.extend(meteringUtilityService.getAmbientDefaultFilter(), {
+                from: $scope.ambientRange == 10 ? '10 days ago' : ($scope.ambientRange == 5) ? '5 days ago' : 'today',
+                rateBy: $scope.ambientRange > 1 ? 'hour' : 'minute'
+            });
+
+            function updateFilter() {
+                $scope.driveFilter.from = $scope.driveRange == 10 ? '10 days ago' : ($scope.driveRange == 5) ? '5 days ago' : 'today';
+                $scope.driveFilter.rateBy = $scope.driveRange > 1 ? 'hour' : 'minute';
+
+                $scope.ambientFilter.from = $scope.ambientRange == 10 ? '10 days ago' : ($scope.ambientRange == 5) ? '5 days ago' : 'today';
+                $scope.ambientFilter.rateBy = $scope.ambientRange > 1 ? 'hour' : 'minute';
+
+            }
+
+            $scope.$watch('driveRange', function () {
+                updateFilter();
+            });
 
             $scope.updateAutoOff = function (autoOffState) {
                 if (autoOffState.ref) {
@@ -89,22 +111,25 @@
                 $scope.updateAutoOff(autoOff);
             };
 
-            $scope.updateHighBeamState = function (state) {
-                var data = angular.copy($scope.syncData.data);
-                data.state.lightHighBeam = state;
-                save(data);
-
-                $scope.updateAutoOff($scope.highBeamAutoOff);
+            $scope.updateLowBeamState = function () {
+                $scope.syncData.data.state.lightLowBeam = !$scope.syncData.data.state.lightLowBeam;
+                $scope.updateState($scope.lowBeamAutoOff);
             };
 
-            $scope.updateTurnSignalState = function (state) {
-                var data = angular.copy($scope.syncData.data);
-                data.state.lightTurnSignal = state;
-                save(data);
-
-                $scope.updateAutoOff($scope.turnSignalAutoOff);
+            $scope.updateHighBeamState = function () {
+                $scope.syncData.data.state.lightHighBeam = !$scope.syncData.data.state.lightHighBeam;
+                $scope.updateState($scope.highBeamAutoOff);
             };
 
+            $scope.updateTurnSignalState = function () {
+                $scope.syncData.data.state.lightTurnSignal = !$scope.syncData.data.state.lightTurnSignal;
+                $scope.updateState($scope.turnSignalAutoOff);
+            };
+
+            $scope.updateLockState = function () {
+                $scope.syncData.data.state.locks = !$scope.syncData.data.state.locks;
+                $scope.updateState($scope.locksAutoOff);
+            };
 
 
             function save() {
@@ -115,24 +140,30 @@
                     });
             }
 
-            //$scope.$root.loader.suspend();
-
-            // blogService.get($state.params.slug, {
-            //         embed: 'tags'
-            //     })
-            //     .success(function (blog) {
-            //         $scope.blog = blog;
-            //         $scope.authorId = $scope.blog.authorId;
-            //     })
-            //     .error(function (error) {
-            //         console.log(error); // jshint ignore: line
-            //     })
-            //     .finally(function () {
-            //         $scope.$root.loader.resume();
-            //     });
 
 
-
+            $scope.syncStatusDoorsWindows = function () {
+                baasicDynamicResourceService.get('StatusDoorsWindows', 'fsxLX3BYs4AuhATQ01FWI0')
+                    .success(function (data) {
+                        $scope.statusDoorsWindowsState = {
+                            windowFrontLeft: data.state.windowFrontLeft != 'closed',
+                            windowFrontRight: data.state.windowFrontRight != 'closed',
+                            windowRearLeft: data.state.windowRearLeft != 'closed',
+                            windowRearRight: data.state.windowRearRight != 'closed',
+                            doorFrontLeft: data.state.doorFrontLeft != 'closed',
+                            doorFrontRight: data.state.doorFrontRight != 'closed',
+                            doorRearLeft: data.state.doorRearLeft != 'closed',
+                            doorRearRight: data.state.doorRearRight != 'closed',
+                            trunk: data.state.trunk != 'closed'
+                        };
+                    })
+                    .error(function (error) {
+                        console.log(error);
+                    });
+            }
+            $interval(function () {
+                $scope.syncStatusDoorsWindows();
+            }, 1000);
 
         }
     ]);

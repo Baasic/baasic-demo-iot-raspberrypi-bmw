@@ -1,272 +1,331 @@
-        <!--[if lt IE 8]>
+<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <!-- keep width for all viewport sizes -->
+<!-- Add your site or application content here -->
+<!-- keep width for all viewport sizes -->
 
-        <header class="header">
-            <div class="container header__identity spc--bottom--xlrg spc--top--med">
-                <a href="https://baasic.com" class="pull w--1"><img src="assets/img/baasic-logo.svg" alt="logo"></a>
-                <div class="w-3">
-                	<a href="http://www.bmw.com/com/en/" class="push spc--pull--sml"><img src="assets/img/bmw-logo.svg" alt="logo"></a>
-                	<a href="https://en.wikipedia.org/wiki/Internet_of_things" class="push"><img src="assets/img/iot-logo.svg" alt="logo"></a>
-                </div>
+<header class="header">
+	<div class="container header__identity spc--bottom--xlrg spc--top--med">
+		<a href="https://baasic.com" class="pull w--1"><img src="assets/img/baasic-logo.svg" alt="logo"></a>
+		<div class="w-3">
+			<a href="http://www.bmw.com/com/en/" class="push spc--pull--sml"><img src="assets/img/bmw-logo.svg" alt="logo"></a>
+			<a href="https://en.wikipedia.org/wiki/Internet_of_things" class="push"><img src="assets/img/iot-logo.svg" alt="logo"></a>
+		</div>
 
-            </div>
+	</div>
 
-            <div class="row container">
-                <div class="col col-sml-12 col-med-4 spc--top--lrg">
-                    <!-- <p class="type--left type--negative type--thin type--large ">Here at Baasic we dig all the fancy things around the IoT. Really, we do.</p>
+	<div class="row container">
+		<div class="col col-sml-12 col-med-4 spc--top--lrg">
+			<!-- <p class="type--left type--negative type--thin type--large ">Here at Baasic we dig all the fancy things around the IoT. Really, we do.</p>
                     <p class="type--left type--negative type--thin type--large spc--top--sml">That's why we took a BMW, Raspberry PI and plugged it all in the Baasic's backend.</p> -->
 
-                    <div class="row">
-                    	<div class="col col-sml-12">
-                    		<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
-                    	</div>
-                    	<div class="col col-sml-6 spc--bottom--med">
-                    		<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Kratka svijetla <span ng-show="syncData.data.state.lightLowBeam">({{lowBeamAutoOff.counter}}s)</span></p>
-                    		<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--low" ng-model="syncData.data.state.lightLowBeam" ng-click="updateState(lowBeamAutoOff)" ng-class="{ 'icon--filled--active': syncData.data.state.lightLowBeam }"></a>
-                            <input type="checkbox" ng-model="syncData.data.state.lightLowBeam" ng-click="updateState(lowBeamAutoOff)">
-                    	</div>
-                    	<div class="col col-sml-6 spc--bottom--med">
-                    		<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Duga svijetla <span ng-show="syncData.data.state.lightHighBeam">({{highBeamAutoOff.counter}}s)</span></p>
-                    		<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--high" ng-model="syncData.data.state.lightHighBeam" ng-click="updateState(highBeamAutoOff)" ng-class="{ 'icon--filled--active': syncData.data.state.lightHighBeam }"></a>
-                            <input type="checkbox" ng-model="syncData.data.state.lightHighBeam" ng-click="updateState(highBeamAutoOff)">
+			<div class="row">
+				<div class="col col-sml-12">
+					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
+				</div>
+				<div class="col col-sml-6 spc--bottom--med">
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Kratka svijetla <span ng-show="syncData.data.state.lightLowBeam">({{lowBeamAutoOff.counter}}s)</span></p>
+					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--low" ng-click="updateLowBeamState()"
+					    ng-class="{ 'icon--filled--active': syncData.data.state.lightLowBeam }"></a>
+				</div>
+				<div class="col col-sml-6 spc--bottom--med">
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Duga svijetla <span ng-show="syncData.data.state.lightHighBeam">({{highBeamAutoOff.counter}}s)</span></p>
+					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--high" ng-click="updateHighBeamState()"
+					    ng-class="{ 'icon--filled--active': syncData.data.state.lightHighBeam }"></a>
+				</div>
+				<div class="col col-sml-6">
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Pokazivači smjera <span ng-show="syncData.data.state.lightTurnSignal">({{turnSignalAutoOff.counter}}s)</span></p>
+					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--blinker--right" ng-click="updateTurnSignalState()"
+					    ng-class="{ 'icon--filled--active': syncData.data.state.lightTurnSignal }"></a>
+				</div>
+				<div class="col col-sml-6">
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Otključaj' : 'Zaključaj' }} vrata <span ng-show="syncData.data.state.locks">({{locksAutoOff.counter}}s)</span></p>
+					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lock" ng-class="{ 'icon--filled--active': syncData.data.state.locks }"
+					    ng-click="updateLockState()"></a>
+				</div>
+			</div>
+		</div>
+		<div class="col col-sml-12 col-med-8 car type--center spc--bottom--xlrg">
+			<?xml version="1.0" encoding="utf-8"?>
+			<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+			<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			    viewBox="0 0 984 361" enable-background="new 0 0 984 361" xml:space="preserve">
+				<g>
 
-                    	</div>
-                    	<div class="col col-sml-6">
-                    		<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Pokazivač smjera <span ng-show="syncData.data.state.lightTurnSignal">({{turnSignalAutoOff.counter}}s)</span></p>
-                    		<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--blinker--left" ng-class="{ 'icon--filled--active': syncData.data.state.lightTurnSignal }"></a>
-                    		<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--blinker--right" ng-class="{ 'icon--filled--active': syncData.data.state.lightTurnSignal }"></a>
-                            <input type="checkbox" ng-model="syncData.data.state.lightTurnSignal" ng-click="updateState(turnSignalAutoOff)">
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M295.7,222.9c0,0,27.9,6.7,155.6,11.2" />
 
-                    	</div>
-                    	<div class="col col-sml-6">
-                    		<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Otključaj vrata <span ng-show="syncData.data.state.locks">({{locksAutoOff.counter}}s)</span></p>
-                    		<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lock" ng-class="{ 'icon--filled--active': syncData.data.state.locks }" ng-model="syncData.data.state.locks" ng-click="updateState(locksAutoOff)"></a>
-                            <input type="checkbox" ng-model="syncData.data.state.locks" ng-click="updateState(locksAutoOff)">
+					<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    cx="331.6" cy="203.8" r="19.1" />
 
-                    	</div>
-                    </div>
-                </div>
-                <div class="col col-sml-12 col-med-8 car type--center spc--bottom--xlrg">
-                	<?xml version="1.0" encoding="utf-8"?>
-                	<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                	<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                	viewBox="0 0 984 361" enable-background="new 0 0 984 361" xml:space="preserve">
-                	<g>
+					<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    cx="655.1" cy="205" r="17.9" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M295.7,222.9c0,0,27.9,6.7,155.6,11.2"/>
+					<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    cx="378.6" cy="206.2" r="19.1" />
 
-                		<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="331.6" cy="203.8" r="19.1"/>
+					<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    cx="610.4" cy="206.2" r="19.1" />
 
-                		<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="655.1" cy="205" r="17.9"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M626,118.9c0,0,35.8,15.7,41.5,19.1c6.1,3.8,33.6,21.2,30.3,42.6c-13.4,3.3-153.4,4.5-153.4,4.5" />
 
-                		<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="378.6" cy="206.2" r="19.1"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M535.3,234.1c0,0,144.4-5.5,156.8-11.2" />
 
-                		<circle fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="610.4" cy="206.2" r="19.1"/>
-
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M626,118.9c0,0,35.8,15.7,41.5,19.1c6.1,3.8,33.6,21.2,30.3,42.6c-13.4,3.3-153.4,4.5-153.4,4.5"/>
-
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M535.3,234.1c0,0,144.4-5.5,156.8-11.2"/>
-
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M483.5,236l-21.2-1.4c-2.9-0.2-5.2-2.7-5.2-5.5v-40.3c0-3.3,2.8-5.9,5.9-5.5l21.2,1.4c2.9,0.2,5.2,2.7,5.2,5.5v40.3
-                		C489.4,233.5,486.7,236.1,483.5,236z"/>
+                		C489.4,233.5,486.7,236.1,483.5,236z" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M503.3,236l21.2-1.4c2.9-0.2,5.2-2.7,5.2-5.5v-40.3c0-3.3-2.8-5.9-5.9-5.5l-21.2,1.4c-2.9,0.2-5.2,2.7-5.2,5.5v40.3
-                		C497.3,233.5,500,236.1,503.3,236z"/>
+                		C497.3,233.5,500,236.1,503.3,236z" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M448,175.9c0,0,4.5-52.6,12.4-58.2"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M448,175.9c0,0,4.5-52.6,12.4-58.2" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M537.6,175.9c0,0-4.5-52.6-12.4-58.2"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M537.6,175.9c0,0-4.5-52.6-12.4-58.2" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M277.8,238.6c0,0-4.5,3.3,9,5.5c13.6,2.2,198.2,14.6,206.1,14.6s206.1-9,211.6-12.4c5.5-3.3,0-4.5,0-4.5"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M277.8,238.6c0,0-4.5,3.3,9,5.5c13.6,2.2,198.2,14.6,206.1,14.6s206.1-9,211.6-12.4c5.5-3.3,0-4.5,0-4.5"
+					/>
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M295.7,264.3c0,1.2,16.7,23.5,16.7,23.5l96.3,10"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M295.7,264.3c0,1.2,16.7,23.5,16.7,23.5l96.3,10" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M687.6,264.3c0,1.2-16.7,23.5-16.7,23.5l-96.3,10"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M687.6,264.3c0,1.2-16.7,23.5-16.7,23.5l-96.3,10" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M569.3,309.1H415c-1.7,0-2.8-1.3-2.8-2.8v-28.9c0-1.7,1.3-2.8,2.8-2.8h154.4c1.7,0,2.8,1.3,2.8,2.8v28.9
-                		C572.3,307.9,571,309.1,569.3,309.1z"/>
+                		C572.3,307.9,571,309.1,569.3,309.1z" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M312.5,287.9c0,0-5.5,10-4.5,12.4c1.1,2.4,2.2,6.7,14.6,7.9c12.4,1.1,170.2,15.6,170.2,15.6s178.1-16.7,180.2-17.9
-                		c2.2-1.2,1.2-17.9-2.2-17.9"/>
+                		c2.2-1.2,1.2-17.9-2.2-17.9" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M622.6,116.5c-3.3-9-44.9-57.5-51.5-59.4c-16.7-4.5-127.7-4.5-146.6,0c-3.3,0-54.9,59.4-54.9,59.4s-81.7,19.1-81.7,62.7l154.5,5.5"
-                		/>
+					/>
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M380.8,112.1c0,0,117.5-12.4,236.2,3.3"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M380.8,112.1c0,0,117.5-12.4,236.2,3.3" />
 
-                		<path fill="none" class="car__blinker--left" ng-class="{ 'car__blinker--left--on' : syncData.data.state.lightTurnSignal }" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M687.9,186.6c0,0,2,16.1-5.1,33.2c9.1-1.1,9.1-1.1,9.1-1.1s8-15.1,5.1-33.2L687.9,186.6z"/>
+					<path fill="none" class="car__blinker--left" ng-class="{ 'car__blinker--left--on' : syncData.data.state.lightTurnSignal }"
+					    stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+                		M687.9,186.6c0,0,2,16.1-5.1,33.2c9.1-1.1,9.1-1.1,9.1-1.1s8-15.1,5.1-33.2L687.9,186.6z" />
 
-                		<path fill="none" class="car__blinker--left" ng-class="{ 'car__blinker--left--on' : syncData.data.state.lightTurnSignal }" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M297.4,185.6c0,0-2,16.1,5.1,33.2c-9.1-1.1-9.1-1.1-9.1-1.1s-8-15.1-5.1-33.2L297.4,185.6z"/>
+					<path fill="none" class="car__blinker--left" ng-class="{ 'car__blinker--left--on' : syncData.data.state.lightTurnSignal }"
+					    stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+                		M297.4,185.6c0,0-2,16.1,5.1,33.2c-9.1-1.1-9.1-1.1-9.1-1.1s-8-15.1-5.1-33.2L297.4,185.6z" />
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-                		M378.6,104.2c0,0-2.2-4.5-4.5-4.5s-13.4,0-15.7,0c-2.2,0-4.5,3.3-4.5,4.5c0,1.2,0,5.5,0,5.5s0,5.5,3.3,5.5s13.3,0,13.3,0"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
+                		M378.6,104.2c0,0-2.2-4.5-4.5-4.5s-13.4,0-15.7,0c-2.2,0-4.5,3.3-4.5,4.5c0,1.2,0,5.5,0,5.5s0,5.5,3.3,5.5s13.3,0,13.3,0"
+					/>
 
-                		<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					<path fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    d="
                 		M615.9,104.2c0,0,2.2-4.5,4.5-4.5c2.4,0,13.4,0,15.7,0c2.2,0,4.5,3.3,4.5,4.5c0,1.2,0,5.5,0,5.5s0,5.5-3.3,5.5
-                		c-3.3,0-13.3,0-13.3,0"/>
+                		c-3.3,0-13.3,0-13.3,0" />
 
-                		<polygon fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                		372.2,285.9 331.9,281.5 318.8,266.4 371.2,271.9 	"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    points="
+                		372.2,285.9 331.9,281.5 318.8,266.4 371.2,271.9 	" />
 
-                		<polygon fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                		611.1,285.9 651.4,281.5 664.5,266.4 612.1,271.9 	"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+					    points="
+                		611.1,285.9 651.4,281.5 664.5,266.4 612.1,271.9 	" />
 
-                		<ellipse class="car__lights--low" ng-class="{ 'car__lights--low--on': syncData.data.state.lightLowBeam }" fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="331.6" cy="203.8" rx="14.7" ry="14.6"/>
+					<ellipse class="car__lights--low" ng-class="{ 'car__lights--low--on': syncData.data.state.lightLowBeam }" fill="none" stroke="#FFFFFF"
+					    stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="331.6" cy="203.8" rx="14.7"
+					    ry="14.6" />
 
-                		<ellipse class="car__lights--low" ng-class="{ 'car__lights--low--on': syncData.data.state.lightLowBeam }" fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="655.1" cy="205" rx="13.9" ry="13.7"/>
+					<ellipse class="car__lights--low" ng-class="{ 'car__lights--low--on': syncData.data.state.lightLowBeam }" fill="none" stroke="#FFFFFF"
+					    stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="655.1" cy="205" rx="13.9"
+					    ry="13.7" />
 
-                		<ellipse class="car__lights--high" ng-class="{ 'car__lights--high--on': syncData.data.state.lightHighBeam }" fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="378.6" cy="206.2" rx="14.7" ry="14.6"/>
+					<ellipse class="car__lights--high" ng-class="{ 'car__lights--high--on': syncData.data.state.lightHighBeam }" fill="none"
+					    stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="378.6"
+					    cy="206.2" rx="14.7" ry="14.6" />
 
-                		<ellipse class="car__lights--high" ng-class="{ 'car__lights--high--on': syncData.data.state.lightHighBeam }" fill="none" stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="610.4" cy="206.2" rx="14.7" ry="14.6"/>
-                	</g>
-                	<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="718.7" y1="341.2" x2="740.4" y2="341.2"/>
-                	<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="704.2" y1="341.2" x2="713.9" y2="341.2"/>
-                	<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="693" y1="350" x2="718.7" y2="350"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="267.3" y1="337.2" x2="284.1" y2="337.2"/>
-                	<polygon fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" points="501.7,30.4 510.1,16 518.4,30.4 "/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="215.6" y1="58.5" x2="229.3" y2="58.5"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="204.4" y1="58.5" x2="211.6" y2="58.5"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="195.5" y1="58.5" x2="200.4" y2="58.5"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="230.9" y1="67.3" x2="239.7" y2="67.3"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="206" y1="67.3" x2="223.6" y2="67.3"/>
-                	<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="168.5" y1="280.2" x2="134.8" y2="280.2"/>
-                	<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="133.2" y1="289" x2="124.4" y2="289"/>
-                	<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="158.1" y1="289" x2="140.4" y2="289"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="855.5" y1="137.2" x2="821.8" y2="137.2"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="820.2" y1="146" x2="811.4" y2="146"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="845.1" y1="146" x2="827.4" y2="146"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="196.3" y1="76.1" x2="218" y2="76.1"/>
-                	<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="184.3" y1="76.1" x2="191.5" y2="76.1"/>
-                	<circle fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" cx="743.1" cy="47.3" r="10.7"/>
-                	<rect id="light" class="" x="482.7" y="53.9" fill="none" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="18.7" height="5.9"/>
-                	<g id="light_beam" class="car__lock " ng-class="{ 'car__lock--off': syncData.data.state.locks }">
+					<ellipse class="car__lights--high" ng-class="{ 'car__lights--high--on': syncData.data.state.lightHighBeam }" fill="none"
+					    stroke="#FFFFFF" stroke-width="1.1788" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="610.4"
+					    cy="206.2" rx="14.7" ry="14.6" />
+				</g>
+				<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="718.7" y1="341.2" x2="740.4" y2="341.2"
+				/>
+				<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="704.2" y1="341.2" x2="713.9" y2="341.2"
+				/>
+				<line fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" x1="693" y1="350" x2="718.7" y2="350" />
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="267.3" y1="337.2" x2="284.1" y2="337.2"
+				/>
+				<polygon fill="none" stroke="#FF4553" stroke-linecap="round" stroke-miterlimit="10" points="501.7,30.4 510.1,16 518.4,30.4 "
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="215.6" y1="58.5" x2="229.3" y2="58.5"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="204.4" y1="58.5" x2="211.6" y2="58.5"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="195.5" y1="58.5" x2="200.4" y2="58.5"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="230.9" y1="67.3" x2="239.7" y2="67.3"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="206" y1="67.3" x2="223.6" y2="67.3"
+				/>
+				<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="168.5" y1="280.2" x2="134.8" y2="280.2" />
+				<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="133.2" y1="289" x2="124.4" y2="289" />
+				<line fill="none" stroke="#FF4553" stroke-miterlimit="10" x1="158.1" y1="289" x2="140.4" y2="289" />
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="855.5" y1="137.2" x2="821.8" y2="137.2"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="820.2" y1="146" x2="811.4" y2="146"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="845.1" y1="146" x2="827.4" y2="146"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="196.3" y1="76.1" x2="218" y2="76.1"
+				/>
+				<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" x1="184.3" y1="76.1" x2="191.5" y2="76.1"
+				/>
+				<circle fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" cx="743.1" cy="47.3" r="10.7" />
+				<rect id="light" class="" x="482.7" y="53.9" fill="none" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+				    stroke-miterlimit="10" width="18.7" height="5.9" />
+				<g id="light_beam" class="car__lock " ng-class="{ 'car__lock--off': syncData.data.state.locks }">
 
-                		<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="477.6" y1="64.7" x2="467.8" y2="70.4"/>
+					<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+					    stroke-miterlimit="10" x1="477.6" y1="64.7" x2="467.8" y2="70.4" />
 
-                		<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="483.6" y1="70.4" x2="477.9" y2="80.3"/>
+					<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+					    stroke-miterlimit="10" x1="483.6" y1="70.4" x2="477.9" y2="80.3" />
 
-                		<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="491.6" y1="72.3" x2="491.6" y2="83.7"/>
+					<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+					    stroke-miterlimit="10" x1="491.6" y1="72.3" x2="491.6" y2="83.7" />
 
-                		<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="499.5" y1="70" x2="505.2" y2="79.9"/>
+					<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+					    stroke-miterlimit="10" x1="499.5" y1="70" x2="505.2" y2="79.9" />
 
-                		<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="505.2" y1="64" x2="515.1" y2="69.7"/>
-                	</g>
-                </svg>
+					<line fill="none" class="car__lock--lines" stroke="#FFFFFF" stroke-width="0.9819" stroke-linecap="round" stroke-linejoin="round"
+					    stroke-miterlimit="10" x1="505.2" y1="64" x2="515.1" y2="69.7" />
+				</g>
+			</svg>
 
-                </div>
-            </div>
-        </header>
+		</div>
+	</div>
+</header>
 
-        <main>
-            <section class="section section--secondary">
-                <div class="container">
-                    <div class="row">
-                        <div class="col col-sml-12">
-                            <h2 class="col spc--bottom--lrg type--light type--large title--primary title--primary--alt">Status automobila</h2>
-                        </div>
-                    </div>
+<main>
+	<section class="section section--secondary">
+		<div class="container">
+			<div class="row">
+				<div class="col col-sml-12">
+					<h2 class="col spc--bottom--lrg type--light type--large title--primary title--primary--alt">Status automobila</h2>
+				</div>
+			</div>
 
-                    <div class="row">
-                        <div class="col col-sml-12 col-med-6">
-                            <div class="col col-sml-12">
-                                <h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Prozori</h3>
-                            </div>
+			<div class="row">
+				<div class="col col-sml-12 col-med-6">
+					<div class="col col-sml-12">
+						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Prozori</h3>
+					</div>
 
-                            <div class="col col-sml-3 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijevi</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : prednjiLijeviProzorOtvoren }"></a>
-                            </div>
+					<div class="col col-sml-3 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijevi</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowFrontLeft }"></a>
+					</div>
 
-                            <div class="col col-sml-3 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desni</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : prednjiDesniProzorOtvoren }"></a>
-                            </div>
+					<div class="col col-sml-3 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desni</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowFrontRight }"></a>
+					</div>
 
-                            <div class="col col-sml-3 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijevi</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : zadnjiLijeviProzorOtvoren }"></a>
-                            </div>
+					<div class="col col-sml-3 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijevi</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowRearLeft }"></a>
+					</div>
 
-                            <div class="col col-sml-3 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desni</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : zadnjiDesniProzorOtvoren }"></a>
-                            </div>
-                        </div>
-                        <div class="col-sml-12 col-med-6">
-                            <div class="col col-sml-12">
-                                <h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Vrata</h3>
-                            </div>
+					<div class="col col-sml-3 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desni</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowRearRight }"></a>
+					</div>
+				</div>
+				<div class="col-sml-12 col-med-6">
+					<div class="col col-sml-12">
+						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Vrata</h3>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijeva</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : prednjaLijevaVrataOtvorena }"></a>
-                            </div>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijeva</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorFrontLeft }"></a>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desna</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : prednjaDesnaVrataOtvorena }"></a>
-                            </div>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desna</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorFrontRight }"></a>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijeva</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : zadnjaLijevaVrataOtvorena }"></a>
-                            </div>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijeva</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorRearLeft }"></a>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desna</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : zadnjaDesnaVrataOtvorena }"></a>
-                            </div>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desna</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorRearRight }"></a>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Prtljažnik</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--trunk" ng-class="{ 'icon--border--active icon--trunk--opened' : gepekOtvoren }"></a>
-                            </div>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Prtljažnik</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--trunk" ng-class="{ 'icon--border--active icon--trunk--opened' : statusDoorsWindowsState.trunk }"></a>
+					</div>
 
-                            <div class="col col-sml-2 spc--bottom--med">
-                                <p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Hauba</p>
-                                <a href="#" class="icon icon--med icon--border icon--rounded icon--hood" ng-class="{ 'icon--border--active icon--hood--opened' : haubaOtvorena }"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+					<div class="col col-sml-2 spc--bottom--med">
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Hauba</p>
+						<a href="#" class="icon icon--med icon--border icon--rounded icon--hood" ng-class="{ 'icon--border--active icon--hood--opened' : statusDoorsWindowsState.haubaOtvorena }"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-            <section class="section section--primary spc--bottom--xlrg">
-            	<div class="container">
-                    <div class="row">
-                        <div class="col col-sml-12">
-                            <h2 class="spc--bottom--lrg type--light type--large title--primary title--primary--alt">Statistika vozila</h2>
-                        </div>
-                    </div>
+	<section class="section section--primary spc--bottom--xlrg">
+		<div class="container">
+			<div class="row">
+				<div class="col col-sml-12">
+					<h2 class="spc--bottom--lrg type--light type--large title--primary title--primary--alt">Statistika vozila</h2>
+				</div>
+			</div>
 
-                    <div class="row">
-                    	<div class="col col-sml-12 col-med-6">
-                    	    <baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
-                    	</div>
-                    	<div class="col col-sml-12 col-med-6">
-                    		<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
-                    	</div>
-                    </div>
-                </div>
-            </section>
-        </main>
+			<div class="row">
+				<div class="col col-sml-12 col-med-6">
+					<input type="radio" name="drive" ng-value="1" ng-model="driveRange" /> 1 day
+					<input type="radio" name="drive" ng-value="2" ng-model="driveRange" /> 2 day
+					<input type="radio" name="drive" ng-value="5" ng-model="driveRange" /> 5 day
+					<input type="radio" name="drive" ng-value="10" ng-model="driveRange" /> 10 day
+					<input type="radio" name="drive" ng-value="30" ng-model="driveRange" /> 30 day
+					<baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
+				</div>
+				<div class="col col-sml-12 col-med-6">
+					<input type="radio" name="ambient" ng-value="1" ng-model="ambientRange" /> 1 day
+					<input type="radio" name="ambient" ng-value="2" ng-model="ambientRange" /> 2 day
+					<input type="radio" name="ambient" ng-value="5" ng-model="ambientRange" /> 5 day
+					<input type="radio" name="ambient" ng-value="30" ng-model="ambientRange" /> 30 day
+					<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
