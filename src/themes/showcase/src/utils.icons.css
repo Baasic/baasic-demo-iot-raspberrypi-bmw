@@ -98,7 +98,7 @@
 	}
 
 	&--trunk {
-		background-image: svg-load(../assets/img/trunk.svg, stroke: $color-secondary, fill: transparent);
+		background-image: svg-load(../assets/img/trunk.svg, stroke: $color-secondary, fill: $color-primary);
 
         &--opened {
         	background-image: svg-load(../assets/img/trunk.svg, stroke: white, fill: transparent);
