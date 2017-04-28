@@ -21,6 +21,7 @@
         &:hover {
             transform: none;
             opacity: 0.3;
+            cursor: default;
         }
     }
 
