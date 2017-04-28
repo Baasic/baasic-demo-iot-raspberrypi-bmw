@@ -223,7 +223,7 @@
                     }
                 ],
                 templateUrl: function (elem, attrs) {
-                    return '/templates/showcase/metering-drive-chart/metering-drive-chart.directive.html';
+                    return 'templates/showcase/metering-drive-chart/metering-drive-chart.directive.html';
                 }
             }
         }

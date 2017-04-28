@@ -1,10 +1,16 @@
 ﻿angular.module('baasic.blog')
-    .controller('SCCtrl', ['$scope', '$state', '$interval', 'meteringUtilityService', 'baasicDynamicResourceService', 'meteringService',
-        function ($scope, $state, $interval, meteringUtilityService, baasicDynamicResourceService, meteringService) {
+    .controller('SCCtrl', ['$scope', '$state', '$interval', 'meteringUtilityService', 'baasicDynamicResourceService', 'meteringService', 'baasicAuthorizationService',
+        function ($scope, $state, $interval, meteringUtilityService, baasicDynamicResourceService, meteringService, baasicAuthorizationService) {
             'use strict';
             $scope.syncData = {
                 data: {}
             };
+
+            var token = baasicAuthorizationService.getAccessToken();
+            $scope.userDetails = null;
+            if (token) {
+                $scope.userDetails = baasicAuthorizationService.getUser();
+            }
 
             $scope.driveRange = 30;
             $scope.ambientRange = 10;

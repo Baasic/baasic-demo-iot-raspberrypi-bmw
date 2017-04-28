@@ -222,7 +222,7 @@
                     }
                 ],
                 templateUrl: function (elem, attrs) {
-                    return '/templates/showcase/metering-ambient-chart/metering-ambient-chart.directive.html';
+                    return 'templates/showcase/metering-ambient-chart/metering-ambient-chart.directive.html';
                 }
             }
         }

@@ -73,8 +73,8 @@ gulp.task('styles', function () {
         // Add W3C CSS color function to more compatible CSS PostCSS support
         colorFunction,
         // Add vendor prefixing PostCSS support
-        autoprefixer ({
-          browsers: ['last 2 version']
+        autoprefixer({
+            browsers: ['last 2 version']
         })
     ];
 
@@ -120,13 +120,13 @@ gulp.task('styles-dist', function () {
         // Add W3C CSS color function to more compatible CSS PostCSS support
         colorFunction,
         // Add vendor prefixing PostCSS support
-        autoprefixer ({
-          browsers: ['last 2 version']
+        autoprefixer({
+            browsers: ['last 2 version']
         })
     ];
     return gulp.src([
             './src/themes/' + theme + '/src/app.css'
-    ])
+        ])
         // Prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber({
             errorHandler: function (err) {
@@ -237,7 +237,7 @@ gulp.task('assets-tmp', function () {
     return gulp.src(['./src/assets/**', './src/themes/' + theme + '/assets/**'])
         .pipe(gulp.dest('./.tmp/assets/'));
 });
-gulp.task('assets',['favicon'], function () {
+gulp.task('assets', ['favicon'], function () {
     return gulp.src(['./src/assets/**', './src/themes/' + theme + '/assets/**'])
         .pipe(gulp.dest('./dist/assets/'));
 });
@@ -263,7 +263,7 @@ gulp.task('clean-tmp', function (done) {
 /**
  * Dist
  */
-gulp.task('dist', ['clean-dist', 'vendors', 'assets', 'styles-dist', 'scripts-dist'], function () {
+gulp.task('dist', ['clean-dist', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'config-dist'], function () {
     return gulp.src('./src/app/index.html')
         .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {
             addRootSlash: false,
@@ -286,7 +286,7 @@ gulp.task('dist', ['clean-dist', 'vendors', 'assets', 'styles-dist', 'scripts-di
 /**
  * Watch
  */
-gulp.task('serve', ['assets-tmp','watch'], g.serve({
+gulp.task('serve', ['assets-tmp', 'watch'], g.serve({
     port: 3000,
     root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components', './src', './src/themes/' + theme],
     middleware: function (req, res, next) {
@@ -428,7 +428,7 @@ function dist(ext, name, opt) {
         .pipe(opt.ngAnnotate ? g.ngAnnotate : noop)
         .pipe(opt.ngAnnotate ? g.rename : noop, name + '.annotated.' + ext)
         .pipe(opt.ngAnnotate ? gulp.dest : noop, './dist')
-        .pipe(ext === 'js' ? g.uglify : minifyCss)
+        //.pipe(ext === 'js' ? g.uglify : minifyCss)
         .pipe(g.rename, name + '.min.' + ext)
         .pipe(gulp.dest, './dist')();
 }
@@ -440,6 +440,14 @@ function livereload() {
     return lazypipe()
         .pipe(isWatching ? g.livereload : noop)();
 }
+
+/**
+ * 
+ */
+gulp.task('config-dist', function () {
+    return gulp.src('./web.config')
+        .pipe(gulp.dest('./dist'));
+});
 
 /**
  * Jshint with stylish reporter

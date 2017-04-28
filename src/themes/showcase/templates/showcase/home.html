@@ -12,7 +12,7 @@
 
 			<a href="http://www.bmw.com/com/en/" class="push spc--pull--sml"><img src="assets/img/bmw-logo.svg" alt="logo"></a>
 			<a href="https://en.wikipedia.org/wiki/Internet_of_things" class="push spc--pull--sml"><img src="assets/img/iot-logo.svg" alt="logo"></a>
-            <a href="https://www.raspberrypi.org/" class="push"><img src="assets/img/rpi-logo.svg" alt="logo"></a>
+			<a href="https://www.raspberrypi.org/" class="push"><img src="assets/img/rpi-logo.svg" alt="logo"></a>
 
 		</div>
 
@@ -23,7 +23,7 @@
 			<!-- <p class="type--left type--negative type--thin type--large ">Here at Baasic we dig all the fancy things around the IoT. Really, we do.</p>
                     <p class="type--left type--negative type--thin type--large spc--top--sml">That's why we took a BMW, Raspberry PI and plugged it all in the Baasic's backend.</p> -->
 
-			<div class="row">
+			<div class="row" ng-show="userDetails">
 				<div class="col col-sml-12">
 					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
 				</div>
@@ -46,6 +46,14 @@
 					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Otključaj' : 'Zaključaj' }} vrata</p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lock" ng-class="{ 'icon--filled--active': syncData.data.state.locks }"
 					    ng-click="updateLockState()"></a>
+				</div>
+			</div>
+			<div class="row" ng-hide="userDetails">
+				<div class="col col-sml-12">
+					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
+				</div>
+				<div class="col col-sml-6 spc--bottom--med">
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Nije dostupna za trenutnog korisnika.</p>
 				</div>
 			</div>
 		</div>
