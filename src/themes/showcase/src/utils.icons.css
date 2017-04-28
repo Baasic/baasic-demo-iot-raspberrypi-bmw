@@ -79,10 +79,6 @@
         &--both {
             background-image: svg-load(../assets/img/blinker.svg, stroke: $color-secondary, fill: transparent);
         }
-
-        &--hazard {
-            background-image: svg-load(../assets/img/blinker-hazard.svg, stroke: $color-secondary, fill: transparent);
-        }
 	}
 
 
