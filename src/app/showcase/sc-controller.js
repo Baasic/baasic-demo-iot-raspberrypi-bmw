@@ -7,7 +7,7 @@
             };
 
             $scope.driveRange = 30;
-            $scope.ambientRange = 30;
+            $scope.ambientRange = 10;
 
             $scope.lowBeamAutoOff = {
                 on: false,
