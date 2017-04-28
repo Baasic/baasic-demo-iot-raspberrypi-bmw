@@ -17,6 +17,14 @@
 		opacity: 1;
     }
 
+    &--indicator {
+        &:hover {
+            transform: none;
+            opacity: 0.3;
+        }
+    }
+
+
 	&--med {
 	    width: calc($unit * 10);
 	    height: calc($unit * 10);
@@ -67,7 +75,16 @@
 		&--right {
         	background-image: svg-load(../assets/img/blinker-right.svg, stroke: $color-secondary, fill: transparent);
 		}
+
+        &--both {
+            background-image: svg-load(../assets/img/blinker.svg, stroke: $color-secondary, fill: transparent);
+        }
+
+        &--hazard {
+            background-image: svg-load(../assets/img/blinker-hazard.svg, stroke: $color-secondary, fill: transparent);
+        }
 	}
+
 
 	&--lock {
 		background-image: svg-load(../assets/img/lock.svg, stroke: $color-secondary, fill: transparent);
@@ -105,4 +122,5 @@
 
 		}
 	}
+
 }

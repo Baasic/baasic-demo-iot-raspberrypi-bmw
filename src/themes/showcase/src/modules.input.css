@@ -81,68 +81,39 @@
         opacity: 0;
         position: absolute;
         & + label {
-            cursor: pointer;
-            &:before {
-                content: '';
-                float: left;
-                width: calc($unit * 3);
-                height: calc($unit * 3);
-                margin-top: calc($unit / 2);
-                margin-right: calc($unit * 2);
-                padding: $unit;
-                border: 1px solid color(white blackness(+30%));
-            }
+            transition: all 250ms ease-in-out;
         }
         &:checked {
             & + label {
-                &:before {
+                color: white;
+                background-color: $color-primary;
+                opacity: 1;
+                /*&:before {
                     background-repeat: no-repeat;
                     background-position: center center;
-                }
+                }*/
             }
         }
         &:focus {
             & + label {
-                &:before {
+                outline: none;
+                /*&:before {
                     box-shadow: 0 0 10px rgba(0,0,0,0.4);
-                }
+                }*/
             }
         }
     }
     &--check {
         &:checked {
             & + label {
-                &:before {
-                    /* background-image: url(../img/ic_check_box_black_24px.svg); */
+                /*&:before {
+                     background-image: url(../img/ic_check_box_black_24px.svg);
                     background-color: red;
-                }
+                }*/
             }
         }
     }
-    &--radio {
-        & + label {
-            &:before {
-                border-radius: 50%;
-            }
-        }
-        &:checked {
-            & + label {
-                &:before {
-                    background-color: blue;
-                    /* background-image: url(../img/ic_radio_button_checked_black_24px.svg); */
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                }
-            }
-        }
-        &:focus {
-            & + label {
-                &:before {
-                    box-shadow: $z-depth-1;
-                }
-            }
-        }
-    }
+
     &--warning {
         border: 1px solid $color-warning;
     }

@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    # modules.filter
+\*------------------------------------*/
+.filter {
+    display: block;
+    &__item {
+        display: inline-block;
+        margin: 0 5px;
+    }
+}

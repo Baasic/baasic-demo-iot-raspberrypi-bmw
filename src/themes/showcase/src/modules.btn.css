@@ -49,10 +49,18 @@
         }
     }
     &--ghost {
+        @mixin type-scale $type-small, 1;
         background-color: transparent;
-        color: $color-primary;
+        color: $color-secondary;
+        font-weight: $type-weight-regular;
+        border: 1px solid $color-primary;
+        border-radius: calc($global-radial * 2);
+        opacity: 0.3;
+        transition: all 250ms ease-in-out;
         &:hover {
-            color: color($color-primary blackness(+10%));
+            //color: color($color-primary blackness(+10%));
+            transform: translateY(-2px);
+            opacity: 1;
         }
     }
 
