@@ -6,8 +6,8 @@
                 data: {}
             };
 
-            $scope.driveRange = 1;
-            $scope.ambientRange = 1;
+            $scope.driveRange = 30;
+            $scope.ambientRange = 30;
 
             $scope.lowBeamAutoOff = {
                 on: false,
@@ -65,27 +65,83 @@
                     console.log(error);
                 });
 
-            $scope.driveFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {
-                from: $scope.driveRange == 10 ? '10 days ago' : ($scope.driveRange == 5) ? '5 days ago' : 'today',
-                rateBy: $scope.driveRange > 1 ? 'hour' : 'minute'
-            });
-            $scope.ambientFilter = angular.extend(meteringUtilityService.getAmbientDefaultFilter(), {
-                from: $scope.ambientRange == 10 ? '10 days ago' : ($scope.ambientRange == 5) ? '5 days ago' : 'today',
-                rateBy: $scope.ambientRange > 1 ? 'hour' : 'minute'
-            });
+            function getRateBy(range) {
+                if (range === 30) {
+                    return 'day';
+                } else if (range === 5 || range === 10) {
+                    return 'hour';
+                } else {
+                    return 'minute';
+                }
+            }
 
-            function updateFilter() {
-                $scope.driveFilter.from = $scope.driveRange == 10 ? '10 days ago' : ($scope.driveRange == 5) ? '5 days ago' : 'today';
-                $scope.driveFilter.rateBy = $scope.driveRange > 1 ? 'hour' : 'minute';
+            function getFrom(range) {
+                if (range === 30) {
+                    return '17 days ago'; //Data before 11.04.17 is invalid data
+                } else if (range === 10) {
+                    return '10 days ago';
+                } else if (range === 5) {
+                    return '5 days ago';
+                } else if (range === 2) {
+                    return '2 days ago';
+                } else if (range === 1) {
+                    return 'today';
+                }
+            }
 
-                $scope.ambientFilter.from = $scope.ambientRange == 10 ? '10 days ago' : ($scope.ambientRange == 5) ? '5 days ago' : 'today';
-                $scope.ambientFilter.rateBy = $scope.ambientRange > 1 ? 'hour' : 'minute';
+            function getPageSize(range) {
+                if (range === 30) {
+                    return 'hour';
+                } else {
+                    return 'minute';
+                }
+
 
             }
 
-            $scope.$watch('driveRange', function () {
-                updateFilter();
+            $scope.driveFilter = angular.extend(meteringUtilityService.getDriveDefaultFilter(), {
+                from: getFrom($scope.driveRange),
+                rateBy: getRateBy($scope.driveRange)
             });
+            $scope.ambientFilter = angular.extend(meteringUtilityService.getAmbientDefaultFilter(), {
+                from: getFrom($scope.ambientRange),
+                rateBy: getRateBy($scope.ambientRange)
+            });
+
+            function updateDriverFilter() {
+                $scope.driveFilter.from = getFrom($scope.driveRange);
+                $scope.driveFilter.rateBy = getRateBy($scope.driveRange);
+            }
+
+            function updateAmbientFilter() {
+                $scope.ambientFilter.from = getFrom($scope.ambientRange);
+                $scope.ambientFilter.rateBy = getRateBy($scope.ambientRange);
+            }
+
+            $scope.$watch('driveRange', function () {
+                updateDriverFilter();
+            });
+
+            $scope.$watch('ambientRange', function () {
+                updateAmbientFilter();
+            });
+
+            $scope.availableNames = ['KPH', 'RPM', 'RangeLeft'];
+            $scope.selection = ['KPH', 'RPM'];
+            $scope.toggleSelection = function toggleSelection(name) {
+                var idx = $scope.selection.indexOf(name);
+                // Is currently selected
+                if (idx > -1) {
+                    $scope.selection.splice(idx, 1);
+                }
+                // Is newly selected
+                else {
+                    $scope.selection.push(name);
+                }
+                $scope.driveFilter.names = $scope.selection.join();
+            };
+
+
 
             $scope.updateAutoOff = function (autoOffState) {
                 if (autoOffState.ref) {

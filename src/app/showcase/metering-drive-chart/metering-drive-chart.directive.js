@@ -18,7 +18,7 @@
 
                         $scope.config = {
                             title: {
-                                text: 'Driving Data',
+                                text: 'Podaci o brzini i potrošnji',
                                 useHTML: true
                             },
 
@@ -135,7 +135,7 @@
                                         seriesMetaData[name].name = metric.name;
                                         var value = metric.value;
                                         if (metric.name === 'RPM') {
-                                            value = (value / 10).toPrecision(5) * 1;
+                                            value = (value / 100).toPrecision(5) * 1;
                                         }
                                         seriesMetaData[name].data.push(value);
                                     } else {
@@ -212,9 +212,16 @@
                         };
                         $scope.reload();
 
-                        $scope.$watch('filter', function () {
+                        var filterWatcher = $scope.$watch('filter', function () {
                             $scope.reload();
+                        }, true);
+
+                        $scope.$on('$destroy', function () {
+                            if (filterWatcher) {
+                                filterWatcher();
+                            }
                         });
+
                     }
                 ],
                 templateUrl: function (elem, attrs) {

@@ -316,12 +316,24 @@
 					<input type="radio" name="drive" ng-value="5" ng-model="driveRange" /> 5 day
 					<input type="radio" name="drive" ng-value="10" ng-model="driveRange" /> 10 day
 					<input type="radio" name="drive" ng-value="30" ng-model="driveRange" /> 30 day
+
+					<label ng-repeat="name in availableNames">
+					<input
+						type="checkbox"
+						name="name[]"
+						value="{{name}}"
+						ng-checked="selection.indexOf(name) > -1"
+						ng-click="toggleSelection(name)"
+					> {{name}}
+					</label>
 					<baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
+					<span>Note: RPM x 100</span>
 				</div>
 				<div class="col col-sml-12 col-med-6">
 					<input type="radio" name="ambient" ng-value="1" ng-model="ambientRange" /> 1 day
 					<input type="radio" name="ambient" ng-value="2" ng-model="ambientRange" /> 2 day
 					<input type="radio" name="ambient" ng-value="5" ng-model="ambientRange" /> 5 day
+					<input type="radio" name="ambient" ng-value="10" ng-model="ambientRange" /> 10 day
 					<input type="radio" name="ambient" ng-value="30" ng-model="ambientRange" /> 30 day
 					<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
 				</div>

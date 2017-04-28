@@ -18,7 +18,7 @@
 
                         $scope.config = {
                             title: {
-                                text: 'Ambient Data',
+                                text: 'Ambijentalni podaci',
                                 useHTML: true
                             },
 
@@ -135,7 +135,7 @@
                                         seriesMetaData[name].name = metric.name;
                                         var value = metric.value;
                                         if (metric.name === 'RPM') {
-                                            value = (value / 10).toPrecision(5) * 1;
+                                            value = (value / 100).toPrecision(5) * 1;
                                         }
                                         seriesMetaData[name].data.push(value);
                                     } else {
@@ -169,7 +169,7 @@
 
 
 
-                        $scope.reloadAmbient = function () {
+                        $scope.reload = function () {
                             meteringService.statistics.find($scope.filter)
                                 .success(function (metrics) {
                                     var seriesCounter = 0;
@@ -210,10 +210,16 @@
 
                                 });
                         };
-                        $scope.reloadAmbient();
+                        $scope.reload();
 
-                        $scope.$watch('filter', function () {
-                            $scope.reloadAmbient();
+                        var filterWatcher = $scope.$watch('filter', function () {
+                            $scope.reload();
+                        }, true);
+
+                        $scope.$on('$destroy', function () {
+                            if (filterWatcher) {
+                                filterWatcher();
+                            }
                         });
                     }
                 ],

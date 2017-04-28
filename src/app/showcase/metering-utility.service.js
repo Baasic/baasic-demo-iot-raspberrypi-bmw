@@ -26,6 +26,7 @@
                     orderDirection: 'asc',
                     rateBy: 'minute',
                     from: 'this month',
+                    names: 'KPH,RPM',
                     to: 'now'
                 };
             },
