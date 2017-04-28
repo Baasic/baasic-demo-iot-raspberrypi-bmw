@@ -7,7 +7,7 @@
             };
 
             $scope.driveRange = 30;
-            $scope.ambientRange = 30;
+            $scope.ambientRange = 10;
 
             $scope.lowBeamAutoOff = {
                 on: false,
@@ -143,7 +143,7 @@
                 if (autoOffState.ref) {
                     $interval.cancel(autoOffState.ref);
                 }
-                autoOffState.counter = 60;
+                autoOffState.counter = 10;
                 if (autoOffState.on()) {
                     autoOffState.ref = $interval(function () {
                         autoOffState.counter--;
@@ -151,7 +151,7 @@
                             autoOffState.on(!autoOffState.on());
                             save();
                             $interval.cancel(autoOffState.ref);
-                            autoOffState.counter = 60;
+                            autoOffState.counter = 10;
                         }
                     }, 1000);
                 }
@@ -206,7 +206,8 @@
                             doorFrontRight: data.state.doorFrontRight != 'closed',
                             doorRearLeft: data.state.doorRearLeft != 'closed',
                             doorRearRight: data.state.doorRearRight != 'closed',
-                            trunk: data.state.trunk != 'closed'
+                            trunk: data.state.trunk != 'closed',
+                            sunroof: data.state.sunroof != 'closed'
                         };
                     })
                     .error(function (error) {

@@ -45,9 +45,7 @@
                                     cursor: 'pointer',
                                     point: {
                                         events: {
-                                            click: function () {
-                                                seriesClick(this);
-                                            }
+                                            click: function () {}
                                         }
                                     }
                                 },
