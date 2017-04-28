@@ -107,6 +107,13 @@
                 $scope.ambientFilter.rateBy = getRateBy($scope.ambientRange);
             }
 
+            $scope.refresh = function (filter) {
+                if (!filter.refreshCounter) {
+                    filter.refreshCounter = 1;
+                }
+                filter.refreshCounter = filter.refreshCounter + 1;
+            };
+
             $scope.$watch('driveRange', function () {
                 updateDriverFilter();
             });

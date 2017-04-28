@@ -326,10 +326,12 @@
 						ng-click="toggleSelection(name)"
 					> {{name}}
 					</label>
+					<a href="#" ng-click="refresh(driveFilter)">Refresh</a>
 					<baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
 					<span>Note: RPM x 100</span>
 				</div>
 				<div class="col col-sml-12 col-med-6">
+					<a href="#" ng-click="refresh(ambientFilter)">Refresh</a>
 					<input type="radio" name="ambient" ng-value="1" ng-model="ambientRange" /> 1 day
 					<input type="radio" name="ambient" ng-value="2" ng-model="ambientRange" /> 2 day
 					<input type="radio" name="ambient" ng-value="5" ng-model="ambientRange" /> 5 day
