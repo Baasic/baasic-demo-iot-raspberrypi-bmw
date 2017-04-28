@@ -40,7 +40,7 @@
 					    ng-class="{ 'icon--filled--active': syncData.data.state.lightTurnSignal }"></a>
 				</div>
 				<div class="col col-sml-6">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Otključaj' : 'Zaključaj' }} vrata <span ng-show="syncData.data.state.locks">({{locksAutoOff.counter}}s)</span></p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Otključaj' : 'Zaključaj' }} vrata</p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lock" ng-class="{ 'icon--filled--active': syncData.data.state.locks }"
 					    ng-click="updateLockState()"></a>
 				</div>

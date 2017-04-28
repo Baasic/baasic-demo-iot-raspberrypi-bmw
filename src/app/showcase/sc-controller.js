@@ -11,19 +11,15 @@
 
             $scope.lowBeamAutoOff = {
                 on: false,
-                counter: 60
+                counter: 10
             };
             $scope.highBeamAutoOff = {
                 on: false,
-                counter: 60
+                counter: 10
             };
             $scope.turnSignalAutoOff = {
                 on: false,
-                counter: 60
-            };
-            $scope.locksAutoOff = {
-                on: false,
-                counter: 60
+                counter: 10
             };
 
             baasicDynamicResourceService.get('Commands', '7ilgDcx7j4MLxQTH0FTfn2')
@@ -49,17 +45,10 @@
                         }
                         return $scope.syncData.data.state.lightTurnSignal;
                     };
-                    $scope.locksAutoOff.on = function (state) {
-                        if (state !== undefined) {
-                            $scope.syncData.data.state.locks = state;
-                        }
-                        return $scope.syncData.data.state.locks;
-                    };
 
                     $scope.updateAutoOff($scope.lowBeamAutoOff);
                     $scope.updateAutoOff($scope.highBeamAutoOff);
                     $scope.updateAutoOff($scope.turnSignalAutoOff);
-                    $scope.updateAutoOff($scope.locksAutoOff);
                 })
                 .error(function (error) {
                     console.log(error);
@@ -184,7 +173,7 @@
 
             $scope.updateLockState = function () {
                 $scope.syncData.data.state.locks = !$scope.syncData.data.state.locks;
-                $scope.updateState($scope.locksAutoOff);
+                save();
             };
 
 
