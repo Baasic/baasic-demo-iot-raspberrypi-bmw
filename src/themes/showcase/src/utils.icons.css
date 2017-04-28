@@ -25,6 +25,11 @@
         }
     }
 
+    &--sml {
+	    width: calc($unit * 5);
+	    height: calc($unit * 5);
+	    background-size: calc($unit * 3);
+	}
 
 	&--med {
 	    width: calc($unit * 10);
@@ -119,5 +124,12 @@
 
 		}
 	}
+    &--refresh {
+        background-image: svg-load(../assets/img/refresh.svg, stroke: transparent, fill: $color-secondary);
+
+        &:hover {
+            transform: rotate(360deg);
+        }
+    }
 
 }

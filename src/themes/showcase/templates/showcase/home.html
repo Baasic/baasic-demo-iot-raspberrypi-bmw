@@ -344,7 +344,7 @@
 							<label class="btn btn--ghost btn--sml" for="drive-30">30 dana</label>
 						</li>
                         <li class="filter__item push">
-                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(driveFilter)">Osvježi</a>
+                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh" ng-click="refresh(driveFilter)"></a>
                         </li>
 					</ul>
 					<ul class="filter spc--bottom--sml">
@@ -360,7 +360,7 @@
                     </div>
 				</div>
 				<div class="col col-sml-12 col-med-6">
-					<ul class="filter spc--bottom--sml">
+					<ul class="filter spc--bottom--lrg">
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-1" type="radio" name="ambient" ng-value="1" ng-model="ambientRange" />
 							<label class="btn btn--ghost btn--sml" for="ambient-1">1 dan</label>
@@ -382,10 +382,10 @@
 							<label class="btn btn--ghost btn--sml" for="ambient-30">30 dana</label>
 						</li>
                         <li class="filter__item push">
-                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(ambientFilter)">osvježi</a>
+                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh" ng-click="refresh(ambientFilter)"></a>
                         </li>
 					</ul>
-					<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
+                    <baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
 				</div>
 			</div>
 		</div>
