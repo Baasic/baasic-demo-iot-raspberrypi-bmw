@@ -343,6 +343,9 @@
 							<input class="input input--radio" id="drive-30" type="radio" name="drive" ng-value="30" ng-model="driveRange" />
 							<label class="btn btn--ghost btn--sml" for="drive-30">30 dana</label>
 						</li>
+                        <li class="filter__item push">
+                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(driveFilter)">osvježi</a>
+                        </li>
 					</ul>
 					<ul class="filter spc--bottom--sml">
 						<li ng-repeat="name in availableNames" class="filter__item">
@@ -351,10 +354,10 @@
 							<label class="btn btn--ghost btn--sml" for="statistics-{{$index}}">{{name}}</label>
 						</li>
 					</ul>
-
-					<a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(driveFilter)">osvježi</a>
-					<baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
-					<span class="type--small">Note: RPM x 100</span>
+                    <div class="position-relative">
+                        <baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
+                        <span class="type--small">Note: RPM x 100</span>
+                    </div>
 				</div>
 				<div class="col col-sml-12 col-med-6">
 					<ul class="filter spc--bottom--sml">
@@ -378,8 +381,10 @@
 							<input class="input input--radio" id="ambient-30" type="radio" name="ambient" ng-value="30" ng-model="ambientRange" />
 							<label class="btn btn--ghost btn--sml" for="ambient-30">30 dana</label>
 						</li>
+                        <li class="filter__item push">
+                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(ambientFilter)">osvježi</a>
+                        </li>
 					</ul>
-					<a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml" ng-click="refresh(ambientFilter)">osvježi</a>
 					<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
 				</div>
 			</div>
