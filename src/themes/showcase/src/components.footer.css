@@ -3,16 +3,8 @@
 \*------------------------------------*/
 
 .footer {
-    padding: 0 3rem;
-    margin: 2rem 0;
-    font-size: var(--type-tiny);
-    color: var(--color-light);
-}
-@media all and (--screen-from-lrg) {
-    .footer {
-        width: 100%;
-        margin: 2rem 0;
-        padding: 0 3rem;
-        overflow: hidden;
-    }
+    padding: calc($unit * 3) 0;
+    margin: calc($unit * 2) 0;
+    @mixin type-scale $type-small, 0.75;
+    color: color(black whiteness(+60%));
 }
