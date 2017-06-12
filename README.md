@@ -8,7 +8,7 @@ More information about the RaspberryPI implementation can be found in the blog p
 
 ## Working with the showcase
  
-As a client-side prerequisite, you should install the basic tools for your operating system: Node.js (4.x and above), Bower and Gulp. Start by cloning the [Baasic BMW K-BUS With RaspberryPI Showcase repository](https://github.com/Baasic/baasic-showcase-iot-raspberrypi-bmw/). After that, go into the root folder of the showcase you just cloned and type
+As a client-side prerequisite, you should install the basic tools for your operating system: Node.js (4.x and above), Bower and Gulp. Start by cloning the [Baasic BMW K-BUS With RaspberryPI Showcase repository](https://github.com/Baasic/baasic-demo-iot-raspberrypi-bmw/). After that, go into the root folder of the showcase you just cloned and type.
 
     npm install
     
@@ -18,6 +18,10 @@ npm (Node Package Manager) will go through its configuration file (package.json)
    
 
 and you are *almost* ready to go. 
+
+## Working with IoT showcase 
+
+In order to setup RaspberryPI NodeJS please read the blog posts mentioned in introduction and documentation from GitHub.
 
 ## Base url option
 
