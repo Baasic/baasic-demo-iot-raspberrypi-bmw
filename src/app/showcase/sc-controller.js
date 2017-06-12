@@ -71,16 +71,22 @@
             }
 
             function getFrom(range) {
+                //Note: This sample uses demo data collected during MiniMakerFaire 2017
+                var oneDay = 24 * 60 * 60 * 1000;
+                var makerDate = new Date(2017, 3, 29);
+                var today = new Date();
+                var daysDiff = Math.round(Math.abs((makerDate.getTime() - today.getTime()) / (oneDay)));
+
                 if (range === 30) {
-                    return '17 days ago'; //Data before 11.04.17 is invalid data
+                    return (daysDiff + 17) + ' days ago'; //Data before 11.04.17 is invalid data
                 } else if (range === 10) {
-                    return '10 days ago';
+                    return (daysDiff + 10) + ' days ago';
                 } else if (range === 5) {
-                    return '5 days ago';
+                    return (daysDiff + 5) + ' days ago';
                 } else if (range === 2) {
-                    return '2 days ago';
+                    return (daysDiff + 2) + ' days ago';
                 } else if (range === 1) {
-                    return 'today';
+                    return daysDiff + ' days ago';
                 }
             }
 

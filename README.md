@@ -3,8 +3,8 @@ Baasic BMW K-BUS With RaspberryPI Showcase
 
 ## Showcase Functionality
 
-
-More information about the Starter Kit can be found in the series of blog posts [here](http://www.baasic.com/posts/AngularJS-Blog-Starter-Kit-part-1/).
+Our team has put together a small show case using RaspberryPI connected to BMW 528iA E39 K-BUS in order to communicate with the car and collect metrics.
+More information about the RaspberryPI implementation can be found in the blog post [here](http://mono.software/2016/12/01/hacking-bmw-i-bus-with-raspberry-pi/) and [here](http://mono.software/2017/06/12/hacking-bmw-k-bus-with-raspberry-pi/). NodeJS RaspberryPI source code can be found [here](https://github.com/Baasic/baasic-demo-nodejs-raspberrypi-bmw).
 
 ## Working with the showcase
  
@@ -19,21 +19,9 @@ npm (Node Package Manager) will go through its configuration file (package.json)
 
 and you are *almost* ready to go. 
 
-## Production ready build
-
-To make the app ready for deploy to production run:
-
-```bash
-gulp dist
-```
-or
-```bash
-gulp dist --theme gastro-thumbnail
-```
-
 ## Base url option
 
-You can also add a `--baseUrl` command if your blog destination is not in root of your website 
+You can also add a `--baseUrl` command if showcase destination is not in root of your website 
 
 For example:
 `--baseUrl "/angularjs/baasic-showcase-iot-raspberrypi-bmw/"`
@@ -48,6 +36,6 @@ Get in touch using one of the community channels
 * Google Groups: [Baasic Support](https://groups.google.com/forum/#!forum/baasic-baas)
 * Twitter: [@baasical](https://twitter.com/baasical)
 
-## Credits
+
 
 

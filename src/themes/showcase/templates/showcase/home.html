@@ -25,35 +25,35 @@
 
 			<div class="row" ng-show="userDetails">
 				<div class="col col-sml-12">
-					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
+					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Car control</h2>
 				</div>
 				<div class="col col-sml-6 spc--bottom--med">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Kratka svijetla <span ng-show="syncData.data.state.lightLowBeam">({{lowBeamAutoOff.counter}}s)</span></p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Low beam <span ng-show="syncData.data.state.lightLowBeam">({{lowBeamAutoOff.counter}}s)</span></p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--low" ng-click="updateLowBeamState()"
 					    ng-class="{ 'icon--filled--active': syncData.data.state.lightLowBeam }"></a>
 				</div>
 				<div class="col col-sml-6 spc--bottom--med">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Duga svijetla <span ng-show="syncData.data.state.lightHighBeam">({{highBeamAutoOff.counter}}s)</span></p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">High beam <span ng-show="syncData.data.state.lightHighBeam">({{highBeamAutoOff.counter}}s)</span></p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lights--high" ng-click="updateHighBeamState()"
 					    ng-class="{ 'icon--filled--active': syncData.data.state.lightHighBeam }"></a>
 				</div>
 				<div class="col col-sml-6">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Pokazivači smjera <span ng-show="syncData.data.state.lightTurnSignal">({{turnSignalAutoOff.counter}}s)</span></p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Turn signal <span ng-show="syncData.data.state.lightTurnSignal">({{turnSignalAutoOff.counter}}s)</span></p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--blinker--both" ng-click="updateTurnSignalState()"
 					    ng-class="{ 'icon--filled--active': syncData.data.state.lightTurnSignal }"></a>
 				</div>
 				<div class="col col-sml-6">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Otključaj' : 'Zaključaj' }} vrata</p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">{{syncData.data.state.locks ? 'Unlock' : 'Lock' }} the door</p>
 					<a href="javascript:void(0)" class="icon icon--med icon--filled icon--rounded icon--lock" ng-class="{ 'icon--filled--active': syncData.data.state.locks }"
 					    ng-click="updateLockState()"></a>
 				</div>
 			</div>
 			<div class="row" ng-hide="userDetails">
 				<div class="col col-sml-12">
-					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Kontrola automobila</h2>
+					<h2 class="spc--bottom--lrg type--light type--large type--left type--negative title--primary">Car control</h2>
 				</div>
 				<div class="col col-sml-6 spc--bottom--med">
-					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Nije dostupna za trenutnog korisnika.</p>
+					<p class="type--negative type--uppercase type--letterspace--wide type--tiny type--bold spc--bottom--sml">Car control is not available. Please login to activate the car control.</p>
 				</div>
 			</div>
 		</div>
@@ -243,68 +243,68 @@
 		<div class="container">
 			<div class="row">
 				<div class="col col-sml-12">
-					<h2 class="col spc--bottom--lrg type--light type--large title--primary title--primary--alt">Status automobila</h2>
+					<h2 class="col spc--bottom--lrg type--light type--large title--primary title--primary--alt">Car status</h2>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col col-sml-12 col-med-6">
 					<div class="col col-sml-12">
-						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Prozori</h3>
+						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Windows</h3>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijevi</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Front left</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowFrontLeft }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desni</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Front right</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowFrontRight }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijevi</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Rear left&nbsp;&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowRearLeft }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desni</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Rear right&nbsp;&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.windowRearRight }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Krovni</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Rooftop Window</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--window" ng-class="{ 'icon--border--active icon--window--opened' : statusDoorsWindowsState.sunroof }"></a>
 					</div>
 				</div>
 				<div class="col-sml-12 col-med-6">
 					<div class="col col-sml-12">
-						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Vrata</h3>
+						<h3 class="spc--bottom--med type--small type--uppercase type--letterspace--wide title--secondary">Door</h3>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. lijeva</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Front left&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorFrontLeft }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">P. desna</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Front right</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorFrontRight }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. lijeva</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Rear left&nbsp;&nbsp;&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorRearLeft }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Z. desna</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Rear right&nbsp;&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--doors" ng-class="{ 'icon--border--active icon--doors--opened' : statusDoorsWindowsState.doorRearRight }"></a>
 					</div>
 
 					<div class="col col-sml-2 spc--bottom--med">
-						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Prtljažnik</p>
+						<p class="type--uppercase type--letterspace--wide type--tiny type--bold type--color--light spc--bottom--sml">Car Trunk&nbsp;&nbsp;&nbsp;</p>
 						<a href="javascript:void(0)" class="icon icon--indicator icon--med icon--border icon--rounded icon--trunk" ng-class="{ 'icon--border--active icon--trunk--opened' : statusDoorsWindowsState.trunk }"></a>
 					</div>
 				</div>
@@ -316,7 +316,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col col-sml-12">
-					<h2 class="spc--bottom--lrg type--light type--large title--primary title--primary--alt">Statistika vozila</h2>
+					<h2 class="spc--bottom--lrg type--light type--large title--primary title--primary--alt">Car statistics</h2>
 				</div>
 			</div>
 
@@ -325,27 +325,28 @@
 					<ul class="filter spc--bottom--sml">
 						<li class="filter__item">
 							<input class="input input--radio" id="drive-1" type="radio" name="drive" ng-value="1" ng-model="driveRange" />
-							<label class="btn btn--ghost btn--sml" for="drive-1">1 dan</label>
+							<label class="btn btn--ghost btn--sml" for="drive-1">1 day</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="drive-2" type="radio" name="drive" ng-value="2" ng-model="driveRange" />
-							<label class="btn btn--ghost btn--sml" for="drive-2">2 dana</label>
+							<label class="btn btn--ghost btn--sml" for="drive-2">2 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="drive-5" type="radio" name="drive" ng-value="5" ng-model="driveRange" />
-							<label class="btn btn--ghost btn--sml" for="drive-5">5 dana</label>
+							<label class="btn btn--ghost btn--sml" for="drive-5">5 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="drive-10" type="radio" name="drive" ng-value="10" ng-model="driveRange" />
-							<label class="btn btn--ghost btn--sml" for="drive-10">10 dana</label>
+							<label class="btn btn--ghost btn--sml" for="drive-10">10 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="drive-30" type="radio" name="drive" ng-value="30" ng-model="driveRange" />
-							<label class="btn btn--ghost btn--sml" for="drive-30">30 dana</label>
+							<label class="btn btn--ghost btn--sml" for="drive-30">30 days</label>
 						</li>
-                        <li class="filter__item push">
-                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh" ng-click="refresh(driveFilter)"></a>
-                        </li>
+						<li class="filter__item push">
+							<a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh"
+							    ng-click="refresh(driveFilter)"></a>
+						</li>
 					</ul>
 					<ul class="filter spc--bottom--sml">
 						<li ng-repeat="name in availableNames" class="filter__item">
@@ -354,38 +355,39 @@
 							<label class="btn btn--ghost btn--sml" for="statistics-{{$index}}">{{name}}</label>
 						</li>
 					</ul>
-                    <div class="position-relative">
-                        <baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
-                        <span class="type--small">Note: RPM x 100</span>
-                    </div>
+					<div class="position-relative">
+						<baasic-metering-drive-chart filter="driveFilter"></baasic-metering-drive-chart>
+						<span class="type--small">Note: RPM x 100</span>
+					</div>
 				</div>
 				<div class="col col-sml-12 col-med-6">
 					<ul class="filter spc--bottom--lrg">
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-1" type="radio" name="ambient" ng-value="1" ng-model="ambientRange" />
-							<label class="btn btn--ghost btn--sml" for="ambient-1">1 dan</label>
+							<label class="btn btn--ghost btn--sml" for="ambient-1">1 day</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-2" type="radio" name="ambient" ng-value="2" ng-model="ambientRange" />
-							<label class="btn btn--ghost btn--sml" for="ambient-2">2 dana</label>
+							<label class="btn btn--ghost btn--sml" for="ambient-2">2 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-5" type="radio" name="ambient" ng-value="5" ng-model="ambientRange" />
-							<label class="btn btn--ghost btn--sml" for="ambient-5">5 dana</label>
+							<label class="btn btn--ghost btn--sml" for="ambient-5">5 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-10" type="radio" name="ambient" ng-value="10" ng-model="ambientRange" />
-							<label class="btn btn--ghost btn--sml" for="ambient-10">10 dana</label>
+							<label class="btn btn--ghost btn--sml" for="ambient-10">10 days</label>
 						</li>
 						<li class="filter__item">
 							<input class="input input--radio" id="ambient-30" type="radio" name="ambient" ng-value="30" ng-model="ambientRange" />
-							<label class="btn btn--ghost btn--sml" for="ambient-30">30 dana</label>
+							<label class="btn btn--ghost btn--sml" for="ambient-30">30 days</label>
 						</li>
-                        <li class="filter__item push">
-                            <a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh" ng-click="refresh(ambientFilter)"></a>
-                        </li>
+						<li class="filter__item push">
+							<a href="javascript:void(0)" class="filter__item btn btn--ghost btn--sml icon icon--sml icon--filled icon--rounded icon--refresh"
+							    ng-click="refresh(ambientFilter)"></a>
+						</li>
 					</ul>
-                    <baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
+					<baasic-metering-ambient-chart filter="ambientFilter"></baasic-metering-ambient-chart>
 				</div>
 			</div>
 		</div>
